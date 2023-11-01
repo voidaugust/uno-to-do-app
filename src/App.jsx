@@ -1,26 +1,27 @@
 // import './App.css'
 import { useState } from "react"
-import { Provider } from "react-redux";
+import { useSelector } from "react-redux";
+import AppContext from "./context/context"
 import StartPage from "./components/StartPage/StartPage"
 import TodoApp from "./components/TodoApp/TodoApp"
-// import store from "./store/store";
 
 function App() {
-  const [isAppLaunched, setIsAppLaunched] = useState(false);
+  const [isAppLaunched, setIsAppLaunched] = useState(false)
+
+  const context = useSelector(state => {
+    return {
+      language: state.userPanelUI.language,
+      palette: state.userPanelUI.palette,
+      mode: state.userPanelUI.mode
+    }
+  })
 
   return (
     <>
-      <h1>uno to do app</h1>
-
-      {/* { isAppLaunched 
-        ? (
-          <Provider store={store}>
-            <TodoApp />
-          </Provider> 
-        )
-          
-        : <StartPage /> 
-      } */}
+      { isAppLaunched 
+        ? <AppContext.Provider value={context}> <TodoApp /> </AppContext.Provider>
+        : <StartPage launchApp={setIsAppLaunched} /> 
+      }
     </>
   )
 }

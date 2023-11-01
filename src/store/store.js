@@ -1,8 +1,8 @@
 import { applyMiddleware, combineReducers, legacy_createStore as createStore  } from "redux"
-import { dataReducer } from "./reducers/dataReducer"
-import { todoListUIReducer } from "./reducers/todoListUIReducer"
-import { todoPanelUIReducer } from "./reducers/todoPanelUIReducer"
-import { userPanelUIReducer } from "./reducers/userPanelUIReducer"
+import dataReducer from "./reducers/dataReducer"
+import todoListUIReducer from "./reducers/todoListUIReducer"
+import todoPanelUIReducer from "./reducers/todoPanelUIReducer"
+import userPanelUIReducer from "./reducers/userPanelUIReducer"
 import thunk from "redux-thunk"
 import logger from "redux-logger"
 
