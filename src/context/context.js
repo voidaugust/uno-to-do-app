@@ -1,9 +1,5 @@
 import { createContext } from "react"
 
-const AppContext = createContext({
-  language: "eng",
-	palette: "purple",
-	mode: "light"
-})
+const AppContext = createContext(null)
 
 export default AppContext

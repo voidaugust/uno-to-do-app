@@ -28,10 +28,6 @@ export default function todoListUIReducer(state = todoListUIInitialState, {type,
     
     case SET_SEARCH_QUERY: return { ...state, searchQuery: payload.searchQuery }
 
-    default: try {  
-      return state
-    } catch {
-      throw new Error("invalid action type: " + type)
-    }
+    default: return state
   }
 }

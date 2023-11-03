@@ -19,10 +19,6 @@ export default function todoPanelUIReducer(state = todoPanelUIInitialState, { ty
       ...state, isTodoDeletingConfirmation: !state.isTodoDeletingConfirmation
     }
 
-    default: try {  
-      return state
-    } catch {
-      throw new Error("invalid action type: " + type)
-    }
+    default: return state
   }
 }

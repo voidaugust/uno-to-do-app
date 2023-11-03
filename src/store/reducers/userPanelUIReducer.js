@@ -13,15 +13,11 @@ export default function userPanelUIReducer(state = userPanelUIInitialState, {typ
     
     case SAVE_SETTINGS: return { 
       ...state,
-      language: (state.language === payload.language) ? state.language : payload.language,
-      palette: (state.palette === payload.palette) ? state.palette : payload.palette,
-      mode: (state.mode === payload.mode) ? state.mode : payload.mode
+      language: payload.language,
+      palette: payload.palette,
+      mode: payload.mode
     }
 
-    default: try {  
-      return state
-    } catch {
-      throw new Error("invalid action type: " + type)
-    }
+    default: return state
   }
 }

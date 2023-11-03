@@ -1,4 +1,3 @@
-// import './App.css'
 import { useState } from "react"
 import { useSelector } from "react-redux";
 import AppContext from "./context/context"
@@ -8,13 +7,12 @@ import TodoApp from "./components/TodoApp/TodoApp"
 function App() {
   const [isAppLaunched, setIsAppLaunched] = useState(false)
 
-  const context = useSelector(state => {
-    return {
-      language: state.userPanelUI.language,
-      palette: state.userPanelUI.palette,
-      mode: state.userPanelUI.mode
-    }
-  })
+  const contextSelector = useSelector(state => state.userPanelUI) 
+  const context = {
+    language: contextSelector.language,
+    palette: contextSelector.palette,
+    mode: contextSelector.mode
+  }
 
   return (
     <>

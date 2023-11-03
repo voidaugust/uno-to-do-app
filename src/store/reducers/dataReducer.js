@@ -134,10 +134,6 @@ export default function dataReducer(state = dataInitialState, {type, payload}) {
       }
     })
 
-    default: try {  
-      return state
-    } catch {
-      throw new Error("invalid action type: " + type)
-    }
+    default: return state
   }
 }
