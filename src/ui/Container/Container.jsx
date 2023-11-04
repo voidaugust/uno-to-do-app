@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 import { marginsAndPaddings } from "../marginsAndPaddings"
 import { useSelector } from "react-redux"
 
@@ -19,6 +19,20 @@ const StyledContainer = styled.div`
   justify-content: ${props => props.$justifyContent || "center"};
   ${marginsAndPaddings};
   width: ${props => props.$width || "100%"};
-  height: ${props => props.$height || null};
+  max-width: ${props => props.$maxWidth};
+  height: ${props => props.$height};
   background-color: ${props => props.$bgColor || props.$defaultBg};
+
+  ${props => props.$mobileHide && css`
+    @media only screen and (max-width: 990px) {
+      display: none;
+    }
+  `};
+
+  ${props => props.$mobileCenter && css`
+    @media only screen and (max-width: 990px) {
+      width: 100%;
+      align-items: center;
+    }
+  `};
 `

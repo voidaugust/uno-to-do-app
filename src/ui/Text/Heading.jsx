@@ -22,7 +22,7 @@ export default function Heading(props) {
     $defaultSize: defaultSize()
   }
 
-  switch (props.type) {
+  switch (props.$type) {
     case "h1": return <StyledH1 {...preparedProps} />
     case "h2": return <StyledH2 {...preparedProps} />
     case "h3": return <StyledH3 {...preparedProps} />

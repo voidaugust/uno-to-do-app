@@ -10,7 +10,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   #root {
-    ${'' /* max-width: 1280px; */}
+    display: flex;
+    justify-content: center;
     height: 100dvh;
   }
 

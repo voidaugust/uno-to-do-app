@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux'
 
 export default function Button(props) {
   const context = useSelector(state => state.userPanelUI)
-
   const preparedProps = {
     ...props, 
     $palette: context.palette,
@@ -24,6 +23,10 @@ const StyledButton = styled.button`
   background: transparent;
   transition: box-shadow 150ms ease-in-out;
 
+  &:hover {
+    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.24); 
+  }
+
   ${props => props.$filled && css`
     ${'' /* color: ${props => props.$palette === "dark" ? 'white' : 'black'}; */}
     color: white;
@@ -34,8 +37,4 @@ const StyledButton = styled.button`
     color: var(--over-secondary-purple);
     background: var(--secondary-purple);
   `}
-
-  &:hover {
-    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.24); 
-  }
 `
