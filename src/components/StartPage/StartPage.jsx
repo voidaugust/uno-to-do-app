@@ -16,21 +16,14 @@ export default function StartPage({ launchApp }) {
     <MainWrapper>
       <Container
         $mobileCenter
-        $alignItems="flex-end"
-        $width="42vw" 
-        $height="100%"
+        $alignItems="flex-end" $width="42dvw" $height="100%"
         $bgColor={context.mode === "light" ? "white" : "var(--dark-mode-background)"}
       >
         <Container 
-          $maxWidth="450px"
-          $paddingBlock="20px"
-          $paddingInline="60px"
+          $maxWidth="450px" $paddingBlock="20px" $paddingInline="60px"
         >
           <Container $alignItems="flex-start">
-            <Image 
-              width="103px"
-              src={context.mode === "light" ? unoLogo :unoLogoDarkMode} 
-            />
+            <Image src={context.mode === "light" ? unoLogo :unoLogoDarkMode} />
           </Container>
 
           <Container $marginBlock="100px">
@@ -41,9 +34,7 @@ export default function StartPage({ launchApp }) {
               Welcome to Uno To Do!
             </Heading>
             
-            <Text 
-              $color={context.mode === "light" ? "var(--primary-purple)" : "var(--secondary-purple)"}
-            >
+            <Text $color={context.mode === "light" ? "var(--primary-purple)" : "var(--secondary-purple)"}>
               Start using the best to-do app, you can create and manage your To Do lists to improve your organization.
             </Text>
           </Container>
@@ -65,9 +56,7 @@ export default function StartPage({ launchApp }) {
         $bgColor={context.mode === "light" ? "var(--light-primary-purple)" : "var(--dark-mode-start-page-background)"}
       >
         <Container
-          $paddingBlock="20px"
-          $paddingInline="70px"
-          $height="100%"
+          $paddingBlock="20px" $paddingInline="70px" $height="100%"
           $bgColor={context.mode === "light" ? "var(--light-primary-purple)" : "var(--dark-mode-start-page-background)"}
         >
           <Image src={welcomeImage} />

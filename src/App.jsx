@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useTransition } from "react"
 import { useSelector } from "react-redux";
 import AppContext from "./context/context"
 import StartPage from "./components/StartPage/StartPage"
@@ -6,6 +6,9 @@ import TodoApp from "./components/TodoApp/TodoApp"
 
 function App() {
   const [isAppLaunched, setIsAppLaunched] = useState(false)
+
+  const [isPending, startTransition] = useTransition()
+  const launchApp = () => startTransition(() => setIsAppLaunched(true))
 
   const contextSelector = useSelector(state => state.userPanelUI) 
   const context = {
@@ -17,8 +20,8 @@ function App() {
   return (
     <>
       { isAppLaunched 
-        ? <AppContext.Provider value={context}> <TodoApp /> </AppContext.Provider>
-        : <StartPage launchApp={setIsAppLaunched} /> 
+        ? <AppContext.Provider value={context}> <TodoApp isPending={isPending} /> </AppContext.Provider>
+        : <StartPage launchApp={launchApp} /> 
       }
     </>
   )

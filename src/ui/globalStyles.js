@@ -21,11 +21,18 @@ const GlobalStyle = createGlobalStyle`
     --dark-mode-start-page-background: #2D2C36;
     --primary-purple: #5946D2;
     --light-primary-purple: #F2EFFB;
+    --light-primary-purple-variant: #B0A2F2;
+    --dark-primary-purple-variant: #544794;
     --secondary-purple: #E5DEFF;
     --over-secondary-purple: #160067;
+
     --outline-grey: #79747E;
-    --disabled-grey: #1C1B1F1F;
-    --over-disabled-grey: #1C1B1F61;
+    --light-grey: #1C1B1F1F;
+    --over-light-grey: #1C1B1F61;    
+    
+    --dark-grey: #E6E1E514;
+    --over-dark-grey: #E6E1E599;
+    --over-dark-grey-variant: #E6E1E561;
 
     box-sizing: inherit;
     margin: 0;
