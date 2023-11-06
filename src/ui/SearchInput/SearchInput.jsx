@@ -13,7 +13,7 @@ export default function SearchInput(props) {
 
   return (
     <Container $position="relative" $marginBlock="0 20px">
-      <Icon $src={searchIcon} $top={"calc(50% - 12px)"} $left={"16px"} />
+      <Icon $src={searchIcon} $left={"16px"} />
       <StyledSearchInput {...preparedProps} />
     </Container>
   )

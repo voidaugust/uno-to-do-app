@@ -3,7 +3,8 @@ const userPanelUIInitialState = {
 	isLogouting: false,
   language: 'eng',
 	palette: 'purple',
-	mode: 'light'
+	// mode: 'dark',
+	mode: 'light',
 }
 
 export default userPanelUIInitialState

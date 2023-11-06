@@ -22,7 +22,7 @@ const StyledContainer = styled.div`
   width: ${props => props.$width || "100%"};
   min-width: ${props => props.$minWidth};
   max-width: ${props => props.$maxWidth};
-  height: ${props => props.$height};
+  height: ${props => props.$height || "auto"};
   background-color: ${props => props.$bgColor || props.$defaultBg};
   cursor: ${props => props.$cursor || "auto"};
 
@@ -37,5 +37,11 @@ const StyledContainer = styled.div`
       width: 100%;
       align-items: center;
     }
+  `};
+
+  ${props => props.$divider && css`
+    margin-block: 14.5px;
+    height: 1px;
+    background-color: ${props => props.$mode === "light" ? "var(--light-grey)" : "var(--dark-grey)"}
   `};
 `

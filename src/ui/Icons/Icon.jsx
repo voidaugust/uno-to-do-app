@@ -1,16 +1,13 @@
 import styled from "styled-components"
 
-export default function Icon({ $src, $top, $left }) {
-  return (
-    <StyledIcon
-      $top={$top} $left={$left}
-      dangerouslySetInnerHTML={{__html: $src }} 
-    />
-  )
+export default function Icon(props) {
+  return <StyledIcon {...props} dangerouslySetInnerHTML={{__html: props.$src }} />
 }
 
 const StyledIcon = styled.span`
   position: absolute;
-  top: ${props => props.$top || "0"};
-  left: ${props => props.$left || "0"};
+  top: ${props => props.$top};
+  left: ${props => props.$left};
+  width: ${props => props.$width || "24px"};
+  height: ${props => props.$height || "24px"};
 `
