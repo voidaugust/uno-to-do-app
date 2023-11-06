@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import Container from '../Container/Container'
+import Container from '../Containers/Container'
 
 export default function MainWrapper({ children }) {
   const context = useSelector(state => state.userPanelUI)

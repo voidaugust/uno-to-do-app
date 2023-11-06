@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux"
 import styled from "styled-components"
-import Container from "../Container/Container"
+import Container from "../Containers/Container"
 import Icon from "../Icons/Icon"
 import Text from "../Text/Text"
 import { 

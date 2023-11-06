@@ -1,4 +1,4 @@
-import Container from '../../ui/Container/Container'
+import Container from '../../ui/Containers/Container'
 import UserPic from '../../ui/UserPic/UserPic'
 import Text from '../../ui/Text/Text'
 import { useSelector } from 'react-redux'

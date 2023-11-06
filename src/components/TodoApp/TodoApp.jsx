@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux'
 import Transition from '../../ui/Transition/Transition'
 import MainWrapper from '../../ui/MainWrapper/MainWrapper'
-import Container from '../../ui/Container/Container'
+import Container from '../../ui/Containers/Container'
 import Text from '../../ui/Text/Text'
 import Heading from '../../ui/Text/Heading'
 import TodoAppListPanel from '../TodoAppListPanel/TodoAppListPanel'

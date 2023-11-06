@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux'
 import Button from '../../ui/Button/Button'
 import Image from '../../ui/Image/Image'
-import Container from '../../ui/Container/Container'
+import Container from '../../ui/Containers/Container'
 import MainWrapper from '../../ui/MainWrapper/MainWrapper'
 import unoLogo from '../../imgs/uno-logo.svg'
 import unoLogoDarkMode from '../../imgs/uno-logo-dark-mode.svg'
