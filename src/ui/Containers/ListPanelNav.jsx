@@ -7,5 +7,7 @@ export default function ListPanelNav({ children }) {
 const StyledListPanelNav = styled.nav`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   width: 100%;
+  height: 100%;
 `

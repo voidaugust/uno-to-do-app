@@ -17,12 +17,18 @@ const GlobalStyle = createGlobalStyle`
 
   *, *::before, *::after {
     --default-font-size: 16px;
+    
     --dark-mode-background: #201F24;
     --dark-mode-start-page-background: #2D2C36;
+    
     --primary-purple: #5946D2;
+    --on-dark-primary-purple: #9373FF;
+    
     --light-primary-purple: #F2EFFB;
     --light-primary-purple-variant: #B0A2F2;
+    
     --dark-primary-purple-variant: #544794;
+    
     --secondary-purple: #E5DEFF;
     --over-secondary-purple: #160067;
 

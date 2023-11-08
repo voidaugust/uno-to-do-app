@@ -25,6 +25,7 @@ const StyledContainer = styled.div`
   height: ${props => props.$height || "auto"};
   background-color: ${props => props.$bgColor || props.$defaultBg};
   cursor: ${props => props.$cursor || "auto"};
+  transition: all 150ms ease-in-out;
 
   ${props => props.$mobileHide && css`
     @media only screen and (max-width: 990px) {
@@ -37,6 +38,10 @@ const StyledContainer = styled.div`
       width: 100%;
       align-items: center;
     }
+  `};
+
+  ${props => props.$scrolling && css`
+    overflow: scroll;
   `};
 
   ${props => props.$divider && css`

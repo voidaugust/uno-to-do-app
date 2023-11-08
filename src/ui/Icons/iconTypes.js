@@ -1,8 +1,24 @@
-export const searchIcon =`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+export const searchIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
   <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" fill="#5946D2"/>
 </svg>`
 
-export const importantIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+export const plusIconWhite = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+  <path d="M17 10.1429H10.1429V17H7.85714V10.1429H1V7.85714H7.85714V1H10.1429V7.85714H17V10.1429Z" fill="white"/>
+</svg>`
+
+export const plusIconOnLight = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+  <path d="M17 10.1429H10.1429V17H7.85714V10.1429H1V7.85714H7.85714V1H10.1429V7.85714H17V10.1429Z" fill="#5946D2"/>
+</svg>`
+
+export const plusIconOnDark = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+  <path d="M17 10.1429H10.1429V17H7.85714V10.1429H1V7.85714H7.85714V1H10.1429V7.85714H17V10.1429Z" fill="#9373FF"/>
+</svg>`
+
+export const importantIconNotFilled = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M14.027 10.8 12 4.128 9.973 10.8H3.748l5.071 3.619 -1.969 6.36L12 16.866l5.165 3.92 -1.972 -6.366L20.257 10.8H14.028ZM24 9.6l-7.404 5.292L19.416 24 12 18.372 4.596 24l2.82 -9.108L0 9.6h9.084L12 0l2.916 9.6H24Z" fill="#1C1B1F" fill-opacity="0.38"/>
+</svg>`
+
+export const importantIconFilled = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
   <path d="M14.43 10L12 2L9.57 10H2L8.18 14.41L5.83 22L12 17.31L18.18 22L15.83 14.41L22 10H14.43Z" fill="#F85977"/>
 </svg>`
 
