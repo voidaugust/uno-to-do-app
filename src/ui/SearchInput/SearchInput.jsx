@@ -1,10 +1,11 @@
+import { forwardRef } from "react"
 import { useSelector } from "react-redux"
 import styled from "styled-components"
 import Container from "../Containers/Container"
 import Icon from "../Icons/Icon"
 import { searchIcon } from "../Icons/iconTypes"
 
-export default function SearchInput(props) {
+const SearchInput = forwardRef((props, ref) => {
   const context = useSelector(state => state.userPanelUI)
   const preparedProps = {
     ...props, 
@@ -14,10 +15,15 @@ export default function SearchInput(props) {
   return (
     <Container $position="relative" $marginBlock="0 20px">
       <Icon $src={searchIcon} $left={"16px"} />
-      <StyledSearchInput placeholder="Search" {...preparedProps} />
+      <StyledSearchInput 
+        ref={ref} placeholder="Search" 
+        {...preparedProps} 
+      />
     </Container>
   )
-}
+})
+
+export default SearchInput
 
 const StyledSearchInput = styled.input`
   display: flex;

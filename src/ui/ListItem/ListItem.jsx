@@ -9,7 +9,7 @@ import {
 } from "../Icons/iconTypes"
 
 export default function ListItem(props) {
-  const context = useSelector(state => state.userPanelUI)
+  const context = useSelector(state => state.userPanelUI) // remove, use as props instead
   const preparedProps = {
     ...props, 
     $mode: context.mode
