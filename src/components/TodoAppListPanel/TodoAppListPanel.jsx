@@ -29,12 +29,12 @@ export default function TodoAppListPanel() {
           <Container $scrolling>
             <ListItem 
               $listType={IMPORTANT} $active={activeListId === IMPORTANT}
-              onClick={() => setActiveList(IMPORTANT)}
+              key={IMPORTANT} onClick={() => setActiveList(IMPORTANT)}
             />
 
             <ListItem 
               $listType={ALL_TASKS} $active={activeListId === ALL_TASKS}
-              onClick={() => setActiveList(ALL_TASKS)}
+              key={ALL_TASKS} onClick={() => setActiveList(ALL_TASKS)}
             />
             
             <Container $divider $mode={context.mode} />
