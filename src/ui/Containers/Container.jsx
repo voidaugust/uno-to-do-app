@@ -2,12 +2,7 @@ import styled, { css } from "styled-components"
 import { marginsAndPaddings } from "../marginsAndPaddings"
 
 export default function Container(props) {
-  const preparedProps = {
-    ...props, 
-    $defaultBg: `${props.$mode === "light" ? "white" : "var(--dark-mode-background)"}`
-  }
-
-  return <StyledContainer {...preparedProps} />
+  return <StyledContainer {...props} />
 }
 
 const StyledContainer = styled.div`
@@ -21,9 +16,13 @@ const StyledContainer = styled.div`
   min-width: ${props => props.$minWidth};
   max-width: ${props => props.$maxWidth};
   height: ${props => props.$height || "auto"};
-  background-color: ${props => props.$bgColor || props.$defaultBg};
+  background-color: ${props => props.$bgColor || "transparent"};
   cursor: ${props => props.$cursor || "auto"};
   transition: all 150ms ease-in-out;
+
+  ${props => props.$modeBg && css`
+    background-color: ${props => props.$mode === "light" ? "white" : "var(--dark-mode-background)"};
+  `};
 
   ${props => props.$mobileHide && css`
     @media only screen and (max-width: 990px) {

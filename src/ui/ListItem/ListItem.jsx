@@ -56,7 +56,7 @@ const StyledListItem = styled.li`
   cursor: pointer;
 
   ${props => props.$active && css`
-    background-color: ${props => props.$mode === "light" ? "var(--light-primary-purple)" : "var(--primary-purple)"};
+    background-color: ${props => props.$mode === "light" ? "var(--light-primary-purple)" : "var(--on-dark-light-purple)"};
   `}
 
   &:hover {

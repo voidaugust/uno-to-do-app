@@ -64,7 +64,9 @@ export default function TodoAppListPanel() {
         </Container>
 
         <Container $mode={context.mode}>
-          <Button $add $newList>New List</Button>
+          <Button $add $newList $mode={context.mode}>
+            New List
+          </Button>
         </Container>
 
       </ListPanelNav>

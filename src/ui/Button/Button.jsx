@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components'
-import { useSelector } from 'react-redux'
 import Icon from '../Icons/Icon'
 import { 
   plusIconWhite,
@@ -8,20 +7,13 @@ import {
 } from '../Icons/iconTypes'
 
 export default function Button(props) {
-  const context = useSelector(state => state.userPanelUI)
-  const preparedProps = {
-    ...props, 
-    $mode: context.mode,
-    $palette: context.palette
-  }
-
   const plusIcon = 
     (props.$filled || props.$tonal) 
       ? plusIconWhite 
-      : context.mode === "light" ? plusIconOnLight : plusIconOnDark
+      : props.$mode === "light" ? plusIconOnLight : plusIconOnDark
 
   return (
-    <StyledButton {...preparedProps}>
+    <StyledButton {...props}>
       {
         props.$add
           ? <Icon 
@@ -43,6 +35,7 @@ const StyledButton = styled.button`
   justify-content: center;
   align-items: center;
   width: ${props => props.$width || "100%"};
+  height: ${props => props.$height};
   gap: 8px;
   font-size: 14px;
   line-height: 20px;
@@ -74,5 +67,11 @@ const StyledButton = styled.button`
   ${props => props.$tonal && css`
     color: var(--over-secondary-purple);
     background: var(--secondary-purple);
+  `}
+
+  ${props => props.$icon && css`
+    &:hover {
+      box-shadow: none; 
+    }
   `}
 `

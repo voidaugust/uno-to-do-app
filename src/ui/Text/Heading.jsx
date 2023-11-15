@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux"
 import styled, { css } from "styled-components"
 import { marginsAndPaddings } from "../marginsAndPaddings"
 
@@ -15,10 +14,9 @@ export default function Heading(props) {
     }
   }
 
-  const context = useSelector(state => state.userPanelUI)
   const preparedProps = {
     ...props, 
-    $defaultColor: `${context.mode === "light" ? "black" : "white"}`,
+    $defaultColor: `${props.$mode === "light" ? "black" : "white"}`,
     $defaultSize: defaultSize()
   }
 
@@ -36,6 +34,7 @@ export default function Heading(props) {
 const StylesForHeading = css`
   ${marginsAndPaddings};
   font-size: ${props => props.$size || props.$defaultSize};
+  font-weight: ${props => props.$fontWeight || "400"};
   text-align: ${props => props.$align || "left"};
   color: ${props => props.$color || props.$defaultColor};
   text-wrap: balance;

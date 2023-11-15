@@ -31,6 +31,7 @@ export default function StartPage({ launchApp }) {
           <Container $mode={context.mode} $marginBlock="100px">
             <Heading 
               $type="h1"
+              $mode={context.mode}
               $marginBlock="0 var(--default-font-size)"
             >
               Welcome to Uno To Do!
@@ -43,6 +44,7 @@ export default function StartPage({ launchApp }) {
 
           <Button 
             $filled
+            $mode={context.mode}
             $width="330px" 
             onClick={launchApp}
           >
