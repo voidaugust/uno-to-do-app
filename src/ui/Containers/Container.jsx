@@ -1,12 +1,10 @@
 import styled, { css } from "styled-components"
 import { marginsAndPaddings } from "../marginsAndPaddings"
-import { useSelector } from "react-redux"
 
 export default function Container(props) {
-  const context = useSelector(state => state.userPanelUI)
   const preparedProps = {
     ...props, 
-    $defaultBg: `${context.mode === "light" ? "white" : "var(--dark-mode-background)"}`
+    $defaultBg: `${props.$mode === "light" ? "white" : "var(--dark-mode-background)"}`
   }
 
   return <StyledContainer {...preparedProps} />

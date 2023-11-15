@@ -1,6 +1,4 @@
-import { useSelector } from "react-redux"
 import styled, { css } from "styled-components"
-import Container from "../Containers/Container"
 import Icon from "../Icons/Icon"
 import Text from "../Text/Text"
 import { 
@@ -9,12 +7,6 @@ import {
 } from "../Icons/iconTypes"
 
 export default function ListItem(props) {
-  const context = useSelector(state => state.userPanelUI) // remove, use as props instead
-  const preparedProps = {
-    ...props, 
-    $mode: context.mode
-  }
-
   let listType
   let listTitle
 
@@ -34,30 +26,33 @@ export default function ListItem(props) {
   }
 
   return (
-    <Container $position="relative">
-      <StyledListItem {...preparedProps}>
-        <Icon $src={listType} $left={"8px"} />
+    <StyledListItem {...props}>
+      <Icon $src={listType} $left={"8px"} />
 
-        <Text 
-          $paddingBlock="4px" $paddingInline="48px 8px"
-          $align="left"
-        > 
-          {listTitle}
-        </Text>
+      <Text 
+        $paddingBlock="4px" $paddingInline="48px 8px"
+        $align="left"
+      > 
+        {listTitle}
+      </Text>
 
-        <Icon 
-          $src={context.mode === "light" ? arrowRightOnLightIcon : arrowRightOnDarkIcon} 
-          $left={"calc(100% - 24px - 8px)"}
-        />
-      </StyledListItem>
-    </Container>
+      <Icon 
+        $src={props.$mode === "light" ? arrowRightOnLightIcon : arrowRightOnDarkIcon} 
+        $left={"calc(100% - 24px - 8px)"}
+      />
+    </StyledListItem>
   )
 }
 
-const StyledListItem = styled(Container)`
-  align-items: flex-start;
+const StyledListItem = styled.li`
+  display: flex;
+  position: relative;
+  justify-content: flex-start;
+  align-items: center;
   margin-block: ${props => props.$listType === "important" ? "0 5px" : "5px"};
   padding-block: 6px;
+  width: 100%;
+  list-style-type: none;
   cursor: pointer;
 
   ${props => props.$active && css`

@@ -1,29 +1,24 @@
 import { forwardRef } from "react"
-import { useSelector } from "react-redux"
 import styled from "styled-components"
-import Container from "../Containers/Container"
-import Icon from "../Icons/Icon"
-import { searchIcon } from "../Icons/iconTypes"
+import Container from "../../ui/Containers/Container"
+import Icon from "../../ui/Icons/Icon"
+import { searchIcon } from "../../ui/Icons/iconTypes"
 
 const SearchInput = forwardRef((props, ref) => {
-  const context = useSelector(state => state.userPanelUI)
-  const preparedProps = {
-    ...props, 
-    $mode: context.mode
-  }
-
   return (
-    <Container $position="relative" $marginBlock="0 20px">
+    <Container 
+      $mode={props.$mode} 
+      $position="relative" 
+      $marginBlock="0 20px"
+    >
       <Icon $src={searchIcon} $left={"16px"} />
       <StyledSearchInput 
         ref={ref} placeholder="Search" 
-        {...preparedProps} 
+        {...props} 
       />
     </Container>
   )
 })
-
-export default SearchInput
 
 const StyledSearchInput = styled.input`
   display: flex;
@@ -38,3 +33,5 @@ const StyledSearchInput = styled.input`
   border-bottom: 2px solid ${props => props.$mode === "light" ? "var(--over-light-grey)" : "var(--over-dark-grey-variant)"};
   caret-color: ${props => props.$mode === "light" ? "var(--over-light-grey)" : "var(--over-dark-grey-variant)"};
 `
+
+export default SearchInput

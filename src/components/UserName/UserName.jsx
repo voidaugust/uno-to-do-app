@@ -1,14 +1,15 @@
+import { useContext } from 'react'
+import AppContext from '../../context/context'
 import Container from '../../ui/Containers/Container'
 import UserPic from '../../ui/UserPic/UserPic'
 import Text from '../../ui/Text/Text'
-import { useSelector } from 'react-redux'
 
 export default function UserName() {
-  const context = useSelector(state => state.userPanelUI)
-  const $mode = context.mode
+  const context = useContext(AppContext)
 
   return (
     <Container
+      $mode={context.mode}
       $direction="row"
       $justifyContent="flex-start"
       $marginBlock="0 20px"
@@ -17,7 +18,8 @@ export default function UserName() {
     >
       <UserPic />
 
-      <Container 
+      <Container
+        $mode={context.mode} 
         $width="max-content" 
         $alignItems="flex-start" 
         $cursor="pointer"
@@ -27,7 +29,7 @@ export default function UserName() {
         </Text>
         <Text 
           $size="12px" $height="16px" 
-          $color={$mode === "light" ? "var(--over-light-grey)" : "var(--over-dark-grey)"}
+          $color={context.mode === "light" ? "var(--over-light-grey)" : "var(--over-dark-grey)"}
         >
           augustine-test-email@gmail.com
         </Text>

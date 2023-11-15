@@ -1,4 +1,5 @@
-import { useSelector } from 'react-redux'
+import { useContext } from 'react'
+import AppContext from '../../context/context'
 import Button from '../../ui/Button/Button'
 import Image from '../../ui/Image/Image'
 import Container from '../../ui/Containers/Container'
@@ -10,23 +11,24 @@ import Text from '../../ui/Text/Text'
 import Heading from '../../ui/Text/Heading'
 
 export default function StartPage({ launchApp }) {
-  const context = useSelector(state => state.userPanelUI)
+  const context = useContext(AppContext)
 
   return (
-    <MainWrapper>
+    <MainWrapper $mode={context.mode}>
       <Container
         $mobileCenter
         $alignItems="flex-end" $width="42dvw" $height="100%"
         $bgColor={context.mode === "light" ? "white" : "var(--dark-mode-background)"}
       >
         <Container 
-          $maxWidth="450px" $paddingBlock="20px" $paddingInline="60px"
+          $mode={context.mode} $maxWidth="450px" 
+          $paddingBlock="20px" $paddingInline="60px"
         >
-          <Container $alignItems="flex-start">
+          <Container $mode={context.mode} $alignItems="flex-start">
             <Image src={context.mode === "light" ? unoLogo :unoLogoDarkMode} />
           </Container>
 
-          <Container $marginBlock="100px">
+          <Container $mode={context.mode} $marginBlock="100px">
             <Heading 
               $type="h1"
               $marginBlock="0 var(--default-font-size)"
