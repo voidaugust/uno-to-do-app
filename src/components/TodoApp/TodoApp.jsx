@@ -8,7 +8,7 @@ import Modal from '../Modal/Modal'
 
 export default function TodoApp() {
   const context = useContext(AppContext)
-  const [isModalOpen, setIsModalOpen] = useState(true)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   return (
     <>

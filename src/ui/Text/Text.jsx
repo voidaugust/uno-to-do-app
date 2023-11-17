@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux"
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 import { marginsAndPaddings } from "../marginsAndPaddings"
 
 export default function Text(props) {
@@ -22,4 +22,8 @@ const StyledText = styled.p`
   font-weight: ${props => props.$weight || "500"};
   color: ${props => props.$color || props.$defaultColor};
   text-wrap: balance;
+
+  ${props => props.$secondary && css`
+    color: ${props => props.$mode === "light" ? "var(--over-light-grey)" : "var(--over-dark-grey-variant)"}
+  `}
 `

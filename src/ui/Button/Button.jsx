@@ -31,10 +31,10 @@ const StyledButton = styled.button`
   display: flex;
   position: relative;
   padding-block: 10px;
-  padding-inline: 16px 24px;
+  padding-inline: ${props => props.$paddingInline || "12px"};
   justify-content: center;
   align-items: center;
-  width: ${props => props.$width || "100%"};
+  width: ${props => props.$width || "max-content"};
   height: ${props => props.$height};
   gap: 8px;
   font-size: 14px;
@@ -42,36 +42,43 @@ const StyledButton = styled.button`
   font-weight: 500;
   border-radius: 20px;
   color: ${props => props.$mode === "light" ? "var(--primary-purple)" : "var(--on-dark-primary-purple)"};
-  background: transparent;
+  background-color: transparent;
   transition: all 150ms ease-in-out;
 
-  &:hover {
-    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.24); 
-  }
-
-  ${props => props.$add && css`
+  ${props => props.$rectangle && css`
     justify-content: flex-start;
     padding-inline-start: 40px;
     border-radius: 0;
 
     &:hover {
+      ${defaultHoverShadow}
       background-color: ${props => props.$mode === "light" ? "var(--light-grey)" : "var(--dark-grey)"};
     }
   `}
 
   ${props => props.$filled && css`
     color: white;
-    background: var(--primary-purple);
+    background-color: var(--primary-purple);
+
+    ${props => props.$warning && css`
+    background-color: ${props => props.$mode === "light" ? "var(--light-pink)" : "var(--dark-pink)"};
+    `}
+
+    &:hover {
+      ${defaultHoverShadow}
+    }
   `}
 
   ${props => props.$tonal && css`
     color: var(--over-secondary-purple);
-    background: var(--secondary-purple);
-  `}
+    background-color: var(--secondary-purple);
 
-  ${props => props.$icon && css`
     &:hover {
-      box-shadow: none; 
+      ${defaultHoverShadow}
     }
   `}
+`
+
+const defaultHoverShadow = css`
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.24);
 `

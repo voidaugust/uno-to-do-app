@@ -3,11 +3,14 @@ import AppContext from "../../context/context"
 import Container from "../../ui/Containers/Container"
 import Heading from "../../ui/Text/Heading"
 import Icon from "../../ui/Icons/Icon"
-import { deleteTaskIcon, editTaskIcon } from "../../ui/Icons/iconTypes"
+import { deleteListIcon, editListIcon } from "../../ui/Icons/iconTypes"
 import Button from "../../ui/Button/Button"
+import { useDispatch } from "react-redux"
+import { toggleDeletingList, toggleRenamingList } from "../../store/actionCreators/todoListUIActionsCreator"
 
 export default function TaskListHeader({ activeListTitle, searchQuery }) {
   const context = useContext(AppContext)
+  const dispatch = useDispatch()
 
   const isSearchNotActive = searchQuery === ""
   
@@ -27,12 +30,18 @@ export default function TaskListHeader({ activeListTitle, searchQuery }) {
 
       {isSearchNotActive && isListEditable ? (
         <Container $direction="row" $width="80px">
-          <Button $icon $height="40px">
-            <Icon $src={editTaskIcon} $left="calc(50% - 12px)" />
+          <Button 
+            $width="40px" $height="40px"
+            onClick={() => dispatch(toggleRenamingList())}
+          >
+            <Icon $src={editListIcon} $left="calc(50% - 12px)" />
           </Button>
 
-          <Button $icon>
-            <Icon $src={deleteTaskIcon} $left="calc(50% - 12px)" />
+          <Button 
+            $width="40px" $height="40px"
+            onClick={() => dispatch(toggleDeletingList())}
+          >
+            <Icon $src={deleteListIcon} $left="calc(50% - 12px)" />
           </Button>
         </Container>
         ) : undefined

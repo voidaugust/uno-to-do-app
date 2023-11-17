@@ -2,10 +2,32 @@ import { useContext, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { createPortal } from 'react-dom'
 import AppContext from '../../context/context'
-import styled from 'styled-components'
+import { 
+  ModalBackground, 
+  ModalContainer, 
+  ModalContent, 
+  ModalButtons 
+} from '../../ui/ModalElements/ModalElements'
+import Text from '../../ui/Text/Text'
 import Heading from '../../ui/Text/Heading'
-import { changeListTitle, createList } from '../../store/actionCreators/dataActionsCreator'
-import { toggleCreatingList, toggleRenamingList } from '../../store/actionCreators/todoListUIActionsCreator'
+import { 
+  changeListTitle, 
+  createList, 
+  deleteList
+} from '../../store/actionCreators/dataActionsCreator'
+import { 
+  setActiveListId,
+  toggleCreatingList, 
+  toggleDeletingList, 
+  toggleRenamingList 
+} from '../../store/actionCreators/todoListUIActionsCreator'
+import Input from '../../ui/Input/Input'
+import Button from '../../ui/Button/Button'
+
+const CREATE = "Create"
+const RENAME = "Rename"
+const DELETE = "Delete"
+const ADD = "Add"
 
 export default function Modal({ isModalOpen, setIsModalOpen }) {
   const context = useContext(AppContext)
@@ -15,28 +37,29 @@ export default function Modal({ isModalOpen, setIsModalOpen }) {
   const isRenamingList = useSelector(store => store.todoListUI.renamingList)
   const isDeletingList = useSelector(store => store.todoListUI.deletingList)
   const isCreatingTodo = useSelector(store => store.todoListUI.creatingTodo)
-  const isToggleAvailable = isCreatingList || isRenamingList || isDeletingList || isCreatingTodo
+  const isActionAvailable = isCreatingList || isRenamingList || isDeletingList || isCreatingTodo
   
   const activeListId = useSelector(store => store.todoListUI.activeListId)
+  const activeList = useSelector(store => store.data).find(list => list.id === activeListId)
   
   const dispatch = useDispatch()
 
   let onAction
-  let actionTitle
+  let action
   let heading
-  let inputPlaceholder
+  let placeholder
   let abort
 
   if (isCreatingList) {
     onAction = () => {
       dispatch(createList({ 
-        title: inputRef.current.value ? inputRef.current.value : "New list"
+        title: inputRef.current.value ? inputRef.current.value : "New List"
       }))
       onClose()
     }
-    actionTitle = "Create"
+    action = CREATE
     heading = "New list"
-    inputPlaceholder = "Enter list title"
+    placeholder = "Enter list title"
     abort = () => dispatch(toggleCreatingList())
     setIsModalOpen(true)
   }
@@ -45,64 +68,110 @@ export default function Modal({ isModalOpen, setIsModalOpen }) {
     onAction = () => {
       dispatch(changeListTitle({ 
         listId: activeListId,
-        listTitle: inputRef.current.value
+        listTitle: 
+          inputRef.current.value !== ""
+            ? inputRef.current.value
+            : activeList.title
       }))
       onClose()
     }
-    actionTitle = "Create"
-    heading = "New list"
-    inputPlaceholder = "Enter list title"
+    action = RENAME
+    heading = "Rename list"
+    placeholder = "New title"
     abort = () => dispatch(toggleRenamingList())
     setIsModalOpen(true)
   }
 
+  if (isDeletingList) {
+    onAction = () => {
+      dispatch(setActiveListId({ listId: "allTasks" }))
+      dispatch(deleteList({ listId: activeListId }))
+      onClose()
+    }
+    action = DELETE
+    heading = "Are you sure?"
+    placeholder = "List will be permanently deleted"
+    abort = () => dispatch(toggleDeletingList())
+    setIsModalOpen(true)
+  }
+
   const onClose = () => {
-    isToggleAvailable && abort()
+    isActionAvailable && abort()
     setIsModalOpen(false)
   }
 
+  const backgroundOnClose = (e) => {
+    e.preventDefault()
+    if (e.target === e.currentTarget) onClose()
+  }
+
   if (!isModalOpen) return undefined
+
   return createPortal(
-    <ModalBackground>
+    <ModalBackground onClick={(e) => backgroundOnClose(e)}>
       <ModalContainer $mode={context.mode}>
-        <div className='modal-body'>
+
+        <ModalContent>
           <Heading $type="h5" $mode={context.mode}>
-            {heading ? heading : "Heading"}
+            {heading}
           </Heading>
-          <input 
-            ref={inputRef} 
-            placeholder={inputPlaceholder ? inputPlaceholder : "Type"}
-          />
-        </div>
-        
-        {onAction ? <button onClick={onAction}>{actionTitle}</button> : undefined}
-        <button onClick={onClose}>Cancel</button>
+
+          {action !== DELETE
+            ? <Input
+                ref={inputRef} $mode={context.mode}
+                placeholder={placeholder}
+              />
+            : <Text $mode={context.mode} $secondary>
+                {placeholder}
+              </Text>
+          }
+        </ModalContent>
+
+        <ModalButtons>
+          <Button onClick={onClose}>Cancel</Button>
+          <ActionButton onAction={onAction} action={action} />
+        </ModalButtons>
+
       </ModalContainer>
     </ModalBackground>
     , document.getElementById('modal')
   )
 }
 
-const ModalBackground = styled.div`
-  position: fixed;
-  z-index: 666;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  overflow: auto;
-`
+const ActionButton = ({ onAction, action }) => {
+  switch (action) {
+    case CREATE:
+    case ADD:
+      return (
+        <Button
+          $filled $add 
+          $paddingInline="42px 24px"
+          onClick={onAction}
+        >
+          {action}
+        </Button>
+      )
 
-const ModalContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-block: 10dvh 0;
-  margin-inline: auto;
-  width: 500px;
-  padding: 24px;
-  gap: 20px;
-  border-radius: 28px;
-  background: var(--light-surface-surface-color, #FFF);
-`
+    case DELETE:
+      return (
+        <Button
+          $filled $warning
+          $paddingInline="24px"
+          onClick={onAction}
+        >
+          {action}
+        </Button>
+      )
+
+    default:
+      return (
+        <Button
+          $filled
+          $paddingInline="24px"
+          onClick={onAction}
+        >
+          {action}
+        </Button>
+      )
+  }
+}

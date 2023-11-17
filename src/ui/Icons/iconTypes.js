@@ -38,10 +38,10 @@ export const arrowRightOnDarkIcon = `<svg xmlns="http://www.w3.org/2000/svg" wid
   <path d="M9.99984 6L8.58984 7.41L13.1698 12L8.58984 16.59L9.99984 18L15.9998 12L9.99984 6Z" fill="#E6E1E5" fill-opacity="0.6"/>
 </svg>`
 
-export const editTaskIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+export const editListIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
   <path d="M18.41 5.79988L17.2 4.58988C16.42 3.80988 15.15 3.80988 14.37 4.58988L11.69 7.26988L3 15.9599V19.9999H7.04L15.78 11.2599L18.41 8.62988C19.2 7.84988 19.2 6.57988 18.41 5.79988ZM6.21 17.9999H5V16.7899L13.66 8.12988L14.87 9.33988L6.21 17.9999ZM11 19.9999L15 15.9999H21V19.9999H11Z" fill="white"/>
 </svg>`
 
-export const deleteTaskIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+export const deleteListIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
   <path d="M6 19C6 20.1 6.9 21 8 21H16C17.1 21 18 20.1 18 19V7H6V19ZM8 9H16V19H8V9ZM15.5 4L14.5 3H9.5L8.5 4H5V6H19V4H15.5Z" fill="white"/>
 </svg>`

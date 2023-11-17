@@ -65,7 +65,8 @@ export default function TodoAppListPanel() {
 
         <Container $mode={context.mode}>
           <Button 
-            $add $newList $mode={context.mode}
+            $rectangle $add $newList 
+            $width="100%" $mode={context.mode}
             onClick={() => dispatch(toggleCreatingList())}
           >
             New List

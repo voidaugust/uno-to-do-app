@@ -35,12 +35,16 @@ const GlobalStyle = createGlobalStyle`
     --on-dark-light-purple: #C8BFFF14;
 
     --outline-grey: #79747E;
+    --input-light-grey: #FAF9FB;
     --light-grey: #1C1B1F1F;
     --over-light-grey: #1C1B1F61;    
     
     --dark-grey: #E6E1E514;
     --over-dark-grey: #E6E1E599;
     --over-dark-grey-variant: #E6E1E561;
+
+    --light-pink: #F85977;
+    --dark-pink: #D9415E;
 
     box-sizing: inherit;
     margin: 0;
