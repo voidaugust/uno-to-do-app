@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import AppContext from '../../context/context'
 import MainWrapper from '../../ui/MainWrapper/MainWrapper'
 import Container from '../../ui/Containers/Container'
@@ -8,9 +8,11 @@ import Modal from '../Modal/Modal'
 
 export default function TodoApp() {
   const context = useContext(AppContext)
+  const [isModalOpen, setIsModalOpen] = useState(true)
+
   return (
     <>
-      <Modal />
+      <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       <MainWrapper $mode={context.mode}>
         <Container 
           $width="30dvw" $minWidth="280px" 

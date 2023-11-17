@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { setActiveListId, setSearchQuery } from '../../store/actionCreators/todoListUIActionsCreator'
+import { setActiveListId, setSearchQuery, toggleCreatingList } from '../../store/actionCreators/todoListUIActionsCreator'
 import { useCallback, useContext, useEffect, useRef } from 'react'
 import AppContext from '../../context/context'
 import Container from '../../ui/Containers/Container'
@@ -64,7 +64,10 @@ export default function TodoAppListPanel() {
         </Container>
 
         <Container $mode={context.mode}>
-          <Button $add $newList $mode={context.mode}>
+          <Button 
+            $add $newList $mode={context.mode}
+            onClick={() => dispatch(toggleCreatingList())}
+          >
             New List
           </Button>
         </Container>

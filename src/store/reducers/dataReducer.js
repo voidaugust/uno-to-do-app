@@ -21,7 +21,7 @@ export default function dataReducer(state = dataInitialState, {type, payload}) {
       ...state, 
       { 
         title: payload.title, 
-        id: crypto.randomUUID, 
+        id: crypto.randomUUID(), 
         todos: [] 
       }
     ]
@@ -38,7 +38,7 @@ export default function dataReducer(state = dataInitialState, {type, payload}) {
         ...list, todos: [
           ...list.todos, 
           {
-            id: crypto.randomUUID,
+            id: crypto.randomUUID(),
             title: payload.todoTitle,
             note: null,
             isCompleted: false,

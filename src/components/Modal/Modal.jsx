@@ -1,21 +1,23 @@
-import { useContext, useRef, useState } from 'react'
+import { useContext, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { createPortal } from 'react-dom'
 import AppContext from '../../context/context'
 import styled from 'styled-components'
 import Heading from '../../ui/Text/Heading'
-import { createList } from '../../store/actionCreators/dataActionsCreator'
-import { toggleCreatingList } from '../../store/actionCreators/todoListUIActionsCreator'
+import { changeListTitle, createList } from '../../store/actionCreators/dataActionsCreator'
+import { toggleCreatingList, toggleRenamingList } from '../../store/actionCreators/todoListUIActionsCreator'
 
-export default function Modal() {
+export default function Modal({ isModalOpen, setIsModalOpen }) {
   const context = useContext(AppContext)
-  const [isModalOpen, setIsModalOpen] = useState(true)
   const inputRef = useRef(null)
 
   const isCreatingList = useSelector(store => store.todoListUI.creatingList)
   const isRenamingList = useSelector(store => store.todoListUI.renamingList)
   const isDeletingList = useSelector(store => store.todoListUI.deletingList)
   const isCreatingTodo = useSelector(store => store.todoListUI.creatingTodo)
+  const isToggleAvailable = isCreatingList || isRenamingList || isDeletingList || isCreatingTodo
+  
+  const activeListId = useSelector(store => store.todoListUI.activeListId)
   
   const dispatch = useDispatch()
 
@@ -23,37 +25,58 @@ export default function Modal() {
   let actionTitle
   let heading
   let inputPlaceholder
-  let cancel
+  let abort
 
   if (isCreatingList) {
-    setIsModalOpen(true)
-    onAction = dispatch(createList({
-      title: inputRef.current.value !== "" ? inputRef.current.value : "New list"
-    }))
+    onAction = () => {
+      dispatch(createList({ 
+        title: inputRef.current.value ? inputRef.current.value : "New list"
+      }))
+      onClose()
+    }
     actionTitle = "Create"
     heading = "New list"
     inputPlaceholder = "Enter list title"
-    cancel = dispatch(toggleCreatingList())
+    abort = () => dispatch(toggleCreatingList())
+    setIsModalOpen(true)
   }
 
-  const onCancel = () => {
-    // cancel()
+  if (isRenamingList) {
+    onAction = () => {
+      dispatch(changeListTitle({ 
+        listId: activeListId,
+        listTitle: inputRef.current.value
+      }))
+      onClose()
+    }
+    actionTitle = "Create"
+    heading = "New list"
+    inputPlaceholder = "Enter list title"
+    abort = () => dispatch(toggleRenamingList())
+    setIsModalOpen(true)
+  }
+
+  const onClose = () => {
+    isToggleAvailable && abort()
     setIsModalOpen(false)
   }
 
-  if (!isModalOpen) return null
-  
+  if (!isModalOpen) return undefined
   return createPortal(
     <ModalBackground>
       <ModalContainer $mode={context.mode}>
         <div className='modal-body'>
           <Heading $type="h5" $mode={context.mode}>
-            Header
+            {heading ? heading : "Heading"}
           </Heading>
-          <input ref={inputRef} type="text" />
-          <p>Sample modal</p>
+          <input 
+            ref={inputRef} 
+            placeholder={inputPlaceholder ? inputPlaceholder : "Type"}
+          />
         </div>
-        <button onClick={onCancel}>Cancel</button>
+        
+        {onAction ? <button onClick={onAction}>{actionTitle}</button> : undefined}
+        <button onClick={onClose}>Cancel</button>
       </ModalContainer>
     </ModalBackground>
     , document.getElementById('modal')
