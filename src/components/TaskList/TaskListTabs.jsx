@@ -7,31 +7,34 @@ const TAB_TODO = "tab-todo"
 const TAB_COMPLETED = "tab-completed"
 
 export default function TaskListTabs({ 
-  activeTab, setTodoTabActive, setCompletedTabActive 
+  activeTab, setTodoTabActive, 
+  setCompletedTabActive, isSearchNotActive
 }) {
   const context = useContext(AppContext)
 
   return (
-    <Container $alignItems="flex-start">
-      <TabContainer $mode={context.mode}>
+    isSearchNotActive ? ( 
+      <Container $alignItems="flex-start">
+        <TabContainer $mode={context.mode}>
 
-        <Tab 
-          $mode={context.mode} $active={activeTab === TAB_TODO}
-          id={TAB_TODO} onClick={setTodoTabActive}
-        >
-          To Do
-        </Tab>
+          <Tab 
+            $mode={context.mode} $active={activeTab === TAB_TODO}
+            id={TAB_TODO} onClick={setTodoTabActive}
+          >
+            To Do
+          </Tab>
 
-        <Tab 
-          $mode={context.mode} $active={activeTab === TAB_COMPLETED}
-          id={TAB_COMPLETED} onClick={setCompletedTabActive}
-        >
-          Completed
-        </Tab>
+          <Tab 
+            $mode={context.mode} $active={activeTab === TAB_COMPLETED}
+            id={TAB_COMPLETED} onClick={setCompletedTabActive}
+          >
+            Completed
+          </Tab>
 
-      </TabContainer>
-  
-    </Container>
+        </TabContainer>
+    
+      </Container>
+    ) : undefined
   )
 }
 

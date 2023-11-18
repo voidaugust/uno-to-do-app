@@ -7,10 +7,10 @@ import { useDispatch } from "react-redux"
 import { toggleDeletingList, toggleRenamingList } from "../../store/actionCreators/todoListUIActionsCreator"
 import styled from "styled-components"
 
-export default function TaskListHeader({ activeListTitle, searchQuery }) {
+export default function TaskListHeader({ activeListTitle, isSearchNotActive }) {
   const dispatch = useDispatch()
 
-  const isSearchNotActive = searchQuery === ""
+  // const isSearchNotActive = searchQuery === ""
   
   const IMPORTANT = "Important"
   const TASKS = "Tasks"

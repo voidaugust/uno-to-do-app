@@ -13,6 +13,7 @@ export default function TaskList() {
   const taskLists = useSelector(store => store.data)
   const activeListId = useSelector(store => store.todoListUI.activeListId)
   const searchQuery = useSelector(store => store.todoListUI.searchQuery)
+  const isSearchNotActive = searchQuery === ""
 
   let activeListTitle 
   
@@ -35,14 +36,15 @@ export default function TaskList() {
   return (
     <>
       <Container $mode={context.mode} $alignItems="flex-start">
-        <TaskListHeader 
+        <TaskListHeader // paddings/margins/height issues here
           activeListTitle={activeListTitle}
-          searchQuery={searchQuery}
+          isSearchNotActive={isSearchNotActive}
         />
         <TaskListTabs 
           activeTab={activeTab}
           setTodoTabActive={setTodoTabActive}
           setCompletedTabActive={setCompletedTabActive}
+          isSearchNotActive={isSearchNotActive}
         />
       </Container>
     </>
