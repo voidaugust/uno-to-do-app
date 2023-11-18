@@ -1,4 +1,4 @@
-import { useContext, useRef } from 'react'
+import { useCallback, useContext, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { createPortal } from 'react-dom'
 import AppContext from '../../context/context'
@@ -61,7 +61,6 @@ export default function Modal({ isModalOpen, setIsModalOpen }) {
     heading = "New list"
     placeholder = "Enter list title"
     abort = () => dispatch(toggleCreatingList())
-    setIsModalOpen(true)
   }
 
   if (isRenamingList) {
@@ -79,7 +78,6 @@ export default function Modal({ isModalOpen, setIsModalOpen }) {
     heading = "Rename list"
     placeholder = "New title"
     abort = () => dispatch(toggleRenamingList())
-    setIsModalOpen(true)
   }
 
   if (isDeletingList) {
@@ -92,7 +90,6 @@ export default function Modal({ isModalOpen, setIsModalOpen }) {
     heading = "Are you sure?"
     placeholder = "List will be permanently deleted"
     abort = () => dispatch(toggleDeletingList())
-    setIsModalOpen(true)
   }
 
   const onClose = () => {
@@ -104,6 +101,11 @@ export default function Modal({ isModalOpen, setIsModalOpen }) {
     e.preventDefault()
     if (e.target === e.currentTarget) onClose()
   }
+
+  const openModal = useCallback(() => setIsModalOpen(true), [setIsModalOpen])
+  useEffect(() => {
+    isActionAvailable && openModal()
+  }, [isActionAvailable, openModal])
 
   if (!isModalOpen) return undefined
 
