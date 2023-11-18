@@ -47,7 +47,7 @@ export default function Modal({ isModalOpen, setIsModalOpen }) {
   let onAction
   let action
   let heading
-  let placeholder
+  let description
   let abort
 
   if (isCreatingList) {
@@ -59,7 +59,7 @@ export default function Modal({ isModalOpen, setIsModalOpen }) {
     }
     action = CREATE
     heading = "New list"
-    placeholder = "Enter list title"
+    description = "Enter list title"
     abort = () => dispatch(toggleCreatingList())
   }
 
@@ -76,7 +76,7 @@ export default function Modal({ isModalOpen, setIsModalOpen }) {
     }
     action = RENAME
     heading = "Rename list"
-    placeholder = "New title"
+    description = "New title"
     abort = () => dispatch(toggleRenamingList())
   }
 
@@ -88,7 +88,7 @@ export default function Modal({ isModalOpen, setIsModalOpen }) {
     }
     action = DELETE
     heading = "Are you sure?"
-    placeholder = "List will be permanently deleted"
+    description = "List will be permanently deleted"
     abort = () => dispatch(toggleDeletingList())
   }
 
@@ -121,10 +121,10 @@ export default function Modal({ isModalOpen, setIsModalOpen }) {
           {action !== DELETE
             ? <Input
                 ref={inputRef} $mode={context.mode}
-                placeholder={placeholder}
+                placeholder={description}
               />
             : <Text $mode={context.mode} $secondary>
-                {placeholder}
+                {description}
               </Text>
           }
         </ModalContent>
@@ -141,39 +141,39 @@ export default function Modal({ isModalOpen, setIsModalOpen }) {
 }
 
 const ActionButton = ({ onAction, action }) => {
-  switch (action) {
-    case CREATE:
-    case ADD:
-      return (
-        <Button
-          $filled $add 
-          $paddingInline="42px 24px"
-          onClick={onAction}
-        >
-          {action}
-        </Button>
-      )
+  if (action === CREATE || action === ADD) {
+    return (
+      <Button
+        $filled $add 
+        $paddingInline="42px 24px"
+        onClick={onAction}
+      >
+        {action}
+      </Button>
+    )
+  }
 
-    case DELETE:
-      return (
-        <Button
-          $filled $warning
-          $paddingInline="24px"
-          onClick={onAction}
-        >
-          {action}
-        </Button>
-      )
+  if (action === RENAME) {
+    return (
+      <Button
+        $filled
+        $paddingInline="24px"
+        onClick={onAction}
+      >
+        {action}
+      </Button>
+    )
+  }
 
-    default:
-      return (
-        <Button
-          $filled
-          $paddingInline="24px"
-          onClick={onAction}
-        >
-          {action}
-        </Button>
-      )
+  if (action === DELETE) {
+    return (
+      <Button
+        $filled $warning
+        $paddingInline="24px"
+        onClick={onAction}
+      >
+        {action}
+      </Button>
+    )
   }
 }
