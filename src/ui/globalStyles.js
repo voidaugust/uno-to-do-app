@@ -26,8 +26,10 @@ const GlobalStyle = createGlobalStyle`
     
     --light-primary-purple: #F2EFFB;
     --light-primary-purple-variant: #B0A2F2;
+    --light-primary-purple-inverse: #C8BFFF;
     
     --dark-primary-purple-variant: #544794;
+    --dark-primary-purple-inverse: #5946D2;
     
     --secondary-purple: #E5DEFF;
     --over-secondary-purple: #160067;
