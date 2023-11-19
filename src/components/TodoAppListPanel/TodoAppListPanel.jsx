@@ -43,8 +43,7 @@ export default function TodoAppListPanel() {
             }}
           />
 
-          <Container $mode={context.mode} $scrolling>
-            <ul style={{ width: "100%" }}>
+          <Container as="ul" $mode={context.mode} $scrolling>
             <ListItem 
               $mode={context.mode} key={IMPORTANT}
               $listType={IMPORTANT} $active={activeListId === IMPORTANT}
@@ -56,8 +55,7 @@ export default function TodoAppListPanel() {
               $listType={ALL_TASKS} $active={activeListId === ALL_TASKS}
               onClick={() => setActiveList(ALL_TASKS)}
             />
-            </ul>
-            <Container $divider $mode={context.mode} />
+            <Container as="span" $divider $mode={context.mode} />
             <TodoLists setActiveList={setActiveList} />
           </Container>
 
@@ -65,7 +63,7 @@ export default function TodoAppListPanel() {
 
         <Container $mode={context.mode}>
           <Button 
-            $rectangle $add $newList 
+            $rectangle $alignLeft $add $newList 
             $width="100%" $mode={context.mode}
             onClick={() => dispatch(toggleCreatingList())}
           >

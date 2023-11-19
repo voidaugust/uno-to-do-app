@@ -5,10 +5,11 @@ import {
   plusIconOnLight, 
   plusIconOnDark 
 } from '../Icons/iconTypes'
+import { defaultAnimation } from '../defaultAnimation'
 
 export default function Button(props) {
   const plusIcon = 
-    (props.$filled || props.$tonal) 
+    (props.$filled || props.$tonal || props.$opaque) 
       ? plusIconWhite 
       : props.$mode === "light" ? plusIconOnLight : plusIconOnDark
 
@@ -41,19 +42,30 @@ const StyledButton = styled.button`
   line-height: 20px;
   font-weight: 500;
   border-radius: 20px;
-  color: ${props => props.$mode === "light" ? "var(--primary-purple)" : "var(--on-dark-primary-purple)"};
+  color: ${
+    props => props.$mode === "light" 
+    ? "var(--primary-purple)" 
+    : "var(--on-dark-primary-purple)"
+  };
   background-color: transparent;
-  transition: all 150ms ease-in-out;
+  ${defaultAnimation}
 
   ${props => props.$rectangle && css`
-    justify-content: flex-start;
-    padding-inline-start: 40px;
     border-radius: 0;
 
     &:hover {
       ${defaultHoverShadow}
-      background-color: ${props => props.$mode === "light" ? "var(--light-grey)" : "var(--dark-grey)"};
+      background-color: ${
+        props => props.$mode === "light" 
+          ? "var(--light-grey)" 
+          : "var(--dark-grey)"
+      };
     }
+  `}
+
+  ${props => props.$alignLeft && css`
+    justify-content: flex-start;
+    padding-inline-start: 42px;
   `}
 
   ${props => props.$filled && css`
@@ -61,7 +73,11 @@ const StyledButton = styled.button`
     background-color: var(--primary-purple);
 
     ${props => props.$warning && css`
-    background-color: ${props => props.$mode === "light" ? "var(--light-pink)" : "var(--dark-pink)"};
+    background-color: ${
+      props => props.$mode === "light" 
+        ? "var(--light-pink)" 
+        : "var(--dark-pink)"  
+      };
     `}
 
     &:hover {
@@ -72,6 +88,19 @@ const StyledButton = styled.button`
   ${props => props.$tonal && css`
     color: var(--over-secondary-purple);
     background-color: var(--secondary-purple);
+
+    &:hover {
+      ${defaultHoverShadow}
+    }
+  `}
+
+  ${props => props.$opaque && css`
+    color: white;
+    background-color: ${
+      props => props.$mode === "light" 
+        ? "var(--over-light-surface-grey)" 
+        : "var(--over-dark-surface-grey)"
+    };
 
     &:hover {
       ${defaultHoverShadow}

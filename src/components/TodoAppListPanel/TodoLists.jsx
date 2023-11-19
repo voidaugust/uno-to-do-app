@@ -9,7 +9,7 @@ export default function TodoLists({ setActiveList }) {
   const context = useContext(AppContext)
 
   return (
-    <ul style={{ width: "100%" }}>
+    <>
       {
         todoLists.map(list => (
           <ListItem 
@@ -22,6 +22,6 @@ export default function TodoLists({ setActiveList }) {
           />
         ))
       }
-    </ul>
+    </>
   )
 }

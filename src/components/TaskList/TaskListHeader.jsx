@@ -2,10 +2,10 @@ import Container from "../../ui/Containers/Container"
 import Heading from "../../ui/Text/Heading"
 import Icon from "../../ui/Icons/Icon"
 import { deleteListIcon, editListIcon } from "../../ui/Icons/iconTypes"
-import Button from "../../ui/Button/Button"
 import { useDispatch } from "react-redux"
 import { toggleDeletingList, toggleRenamingList } from "../../store/actionCreators/todoListUIActionsCreator"
 import styled from "styled-components"
+import SquareIconButton from "../../ui/Button/SquareIconButton"
 
 export default function TaskListHeader({ activeListTitle, isSearchNotActive }) {
   const dispatch = useDispatch()
@@ -22,13 +22,13 @@ export default function TaskListHeader({ activeListTitle, isSearchNotActive }) {
 
       {isSearchNotActive && isListEditable ? (
         <ButtonContainer>
-          <ListHeaderButton onClick={() => dispatch(toggleRenamingList())}>
+          <SquareIconButton onClick={() => dispatch(toggleRenamingList())}>
             <Icon $src={editListIcon} $left="calc(50% - 12px)" />
-          </ListHeaderButton>
+          </SquareIconButton>
 
-          <ListHeaderButton onClick={() => dispatch(toggleDeletingList())}>
+          <SquareIconButton onClick={() => dispatch(toggleDeletingList())}>
             <Icon $src={deleteListIcon} $left="calc(50% - 12px)" />
-          </ListHeaderButton>
+          </SquareIconButton>
         </ButtonContainer>
         ) : undefined
       }
@@ -46,9 +46,4 @@ const HeaderContainer = styled(Container)`
 const ButtonContainer = styled(Container)`
   flex-direction: row;
   width: 80px;
-`
-
-const ListHeaderButton = styled(Button)`
-  width: 40px;
-  height: 40px;
 `

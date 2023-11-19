@@ -32,7 +32,6 @@ export default function TaskListTabs({
           </Tab>
 
         </TabContainer>
-    
       </Container>
     ) : undefined
   )

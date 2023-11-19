@@ -11,6 +11,7 @@ import {
 import Text from '../../ui/Text/Text'
 import Heading from '../../ui/Text/Heading'
 import { 
+  addTodoToList,
   changeListTitle, 
   createList, 
   deleteList
@@ -18,6 +19,7 @@ import {
 import { 
   setActiveListId,
   toggleCreatingList, 
+  toggleCreatingTodo, 
   toggleDeletingList, 
   toggleRenamingList 
 } from '../../store/actionCreators/todoListUIActionsCreator'
@@ -90,6 +92,20 @@ export default function Modal({ isModalOpen, setIsModalOpen }) {
     heading = "Are you sure?"
     description = "List will be permanently deleted"
     abort = () => dispatch(toggleDeletingList())
+  }
+
+  if (isCreatingTodo) {
+    onAction = () => {
+      dispatch(addTodoToList({ 
+        listId: activeListId,
+        todoTitle: inputRef.current.value ? inputRef.current.value : "New List"
+      }))
+      onClose()
+    }
+    action = ADD
+    heading = "Add a task"
+    description = "Add a task"
+    abort = () => dispatch(toggleCreatingTodo())
   }
 
   const onClose = () => {
