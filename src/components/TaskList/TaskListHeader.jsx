@@ -9,8 +9,6 @@ import styled from "styled-components"
 
 export default function TaskListHeader({ activeListTitle, isSearchNotActive }) {
   const dispatch = useDispatch()
-
-  // const isSearchNotActive = searchQuery === ""
   
   const IMPORTANT = "Important"
   const TASKS = "Tasks"
@@ -42,6 +40,7 @@ const HeaderContainer = styled(Container)`
   flex-direction: row;
   justify-content: space-between;
   padding-block: 12px;
+  height: 64px;
 `
 
 const ButtonContainer = styled(Container)`

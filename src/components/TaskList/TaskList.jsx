@@ -36,7 +36,7 @@ export default function TaskList() {
   return (
     <>
       <Container $mode={context.mode} $alignItems="flex-start">
-        <TaskListHeader // paddings/margins/height issues here
+        <TaskListHeader
           activeListTitle={activeListTitle}
           isSearchNotActive={isSearchNotActive}
         />
