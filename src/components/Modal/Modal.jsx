@@ -138,6 +138,7 @@ export default function Modal({ isModalOpen, setIsModalOpen }) {
             ? <Input
                 ref={inputRef} $mode={context.mode}
                 placeholder={description}
+                autoFocus
               />
             : <Text $mode={context.mode} $secondary>
                 {description}
