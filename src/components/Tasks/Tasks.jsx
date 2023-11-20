@@ -1,13 +1,18 @@
 import { useSelector } from "react-redux"
 import Container from "../../ui/Containers/Container"
 import Task from "./Task"
+import { useMemo } from "react"
 
 export default function Tasks({ 
-  allTasks, isAllTasksListSelected,
-  importantTasks, isImportantTasksListSelected
+  isAllTasksListSelected,
+  isImportantTasksListSelected // ! redo using store
 }) {
   const activeListId = useSelector(store => store.todoListUI.activeListId)
-  const activeList = useSelector(store => store.data).find(list => list.id === activeListId)
+  const taskLists = useSelector(store => store.data)
+  const activeList = taskLists.find(list => list.id === activeListId)
+  const importantTasks = 1
+
+  const allTasks = useMemo(() => taskLists.map(list => list.todos).flat(), [taskLists])
   
   let tasks
   if (isAllTasksListSelected) tasks = allTasks

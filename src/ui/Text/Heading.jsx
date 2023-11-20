@@ -7,7 +7,7 @@ export default function Heading(props) {
       case "h1": return "48px"
       case "h2": return "36px"
       case "h3": return "32px"
-      case "h4": return "28px"
+      case "h4": return "24px"
       case "h5": return "24px"
       case "h6": return "20px"
       default: return "36px"
@@ -34,10 +34,19 @@ export default function Heading(props) {
 const StylesForHeading = css`
   ${marginsAndPaddings};
   font-size: ${props => props.$size || props.$defaultSize};
+  line-height: ${props => props.$height};
   font-weight: ${props => props.$fontWeight || "400"};
   text-align: ${props => props.$align || "left"};
   color: ${props => props.$color || props.$defaultColor};
   text-wrap: balance;
+
+  ${props => props.$purple && css`
+    color: ${
+      props => props.$mode === "light" 
+        ? "var(--primary-purple)" 
+        : "var(--on-dark-primary-purple)"
+    }`
+  }
 `
 
 const StyledH1 = styled.h1`${StylesForHeading}`

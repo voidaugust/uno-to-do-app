@@ -68,6 +68,14 @@ const StyledButton = styled.button`
     padding-inline-start: 42px;
   `}
 
+  ${props => props.$warning && css`
+    color: ${
+      props => props.$mode === "light" 
+        ? "var(--light-pink)" 
+        : "var(--dark-pink)"  
+      };
+  `}
+
   ${props => props.$filled && css`
     color: white;
     background-color: var(--primary-purple);

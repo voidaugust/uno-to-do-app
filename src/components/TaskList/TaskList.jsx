@@ -20,11 +20,8 @@ export default function TaskList() {
   const searchQuery = useSelector(store => store.todoListUI.searchQuery)
   const isSearchNotActive = searchQuery === ""
 
-  const allLists = useSelector(store => store.data)
-  const allTasks = useMemo(() => allLists.map(list => list.todos).flat(), [allLists])
-  const importantTasks = useMemo(() => allTasks.filter(task => task.isImportant), [allTasks])
-
-  console.log(allTasks);
+  // const allTasks = useMemo(() => taskLists.map(list => list.todos).flat(), [taskLists])
+  // const importantTasks = useMemo(() => allTasks.filter(task => task.isImportant), [allTasks])
 
   const isAllTasksListSelected = activeListId === ALL_TASKS
   const isImportantTasksListSelected = activeListId === IMPORTANT
@@ -68,9 +65,9 @@ export default function TaskList() {
             isSearchNotActive={isSearchNotActive}
           />
           <Tasks 
-            allTasks={allTasks}
+            // allTasks={allTasks}
             isAllTasksListSelected={isAllTasksListSelected}
-            importantTasks={importantTasks}
+            // importantTasks={importantTasks}
             isImportantTasksListSelected={isImportantTasksListSelected}
           />
         </Container>

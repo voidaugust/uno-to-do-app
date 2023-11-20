@@ -8,5 +8,9 @@ export default function SquareIconButton(props) {
 const StyledSquareIconButton = styled(Button)`
   width: 40px;
   height: 40px;
-  color: ${props => props.$mode === "light" ? "var(--primary-purple)" : "var(--on-dark-primary-purple)"};
+  color: ${
+    props => props.$mode === "light" 
+      ? "var(--primary-purple)" 
+      : "var(--on-dark-primary-purple)"
+  };
 `

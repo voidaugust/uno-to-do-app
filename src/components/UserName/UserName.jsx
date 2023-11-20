@@ -3,9 +3,12 @@ import AppContext from '../../context/context'
 import Container from '../../ui/Containers/Container'
 import UserPic from '../../ui/UserPic/UserPic'
 import Text from '../../ui/Text/Text'
+import { useDispatch } from 'react-redux'
+import { toggleShowingUserPanel } from '../../store/actionCreators/userPanelUIActionsCreator'
 
 export default function UserName() {
   const context = useContext(AppContext)
+  const dispatch = useDispatch()
 
   return (
     <Container
@@ -15,6 +18,7 @@ export default function UserName() {
       $marginBlock="0 20px"
       $height="36px"
       $cursor="pointer"
+      onClick={() => dispatch(toggleShowingUserPanel())}
     >
       <UserPic />
 

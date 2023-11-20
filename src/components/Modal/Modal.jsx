@@ -130,7 +130,7 @@ export default function Modal({ isModalOpen, setIsModalOpen }) {
       <ModalContainer $mode={context.mode}>
 
         <ModalContent>
-          <Heading $type="h5" $mode={context.mode}>
+          <Heading $type="h4" $mode={context.mode}>
             {heading}
           </Heading>
 

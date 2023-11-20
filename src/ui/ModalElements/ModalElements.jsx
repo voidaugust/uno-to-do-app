@@ -34,8 +34,9 @@ const StyledModalContainer = styled.div`
   margin-block: 10dvh 0;
   margin-inline: auto;
   width: 500px;
+  height: ${props => props.$height};
   padding: 24px;
-  gap: 20px;
+  gap: ${props => props.$gap || "20px"};
   border-radius: 28px;
   background-color: ${props => props.$mode === "light" ? "white" : "var(--dark-mode-background)"};
 `
@@ -44,7 +45,7 @@ const StyledModalContent = styled.div`
   display: flex;
   flex-direction: column;
   width: 452px;
-  gap: 20px;
+  gap: ${props => props.$gap || "20px"};
 `
 
 const StyledModalButtons = styled(StyledModalContent)`
