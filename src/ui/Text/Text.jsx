@@ -26,4 +26,12 @@ const StyledText = styled.p`
   ${props => props.$secondary && css`
     color: ${props => props.$mode === "light" ? "var(--over-light-grey)" : "var(--over-dark-grey-variant)"}
   `}
+
+  ${props => props.$purple && css`
+    color: ${
+      props => props.$mode === "light" 
+        ? "var(--primary-purple)" 
+        : "var(--on-dark-primary-purple)"
+    }
+  `}
 `

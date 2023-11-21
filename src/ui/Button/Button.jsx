@@ -6,6 +6,7 @@ import {
   plusIconOnDark 
 } from '../Icons/iconTypes'
 import { defaultAnimation } from '../defaultAnimation'
+import { defaultHoverShadow } from './defaultHoverShadow'
 
 export default function Button(props) {
   const plusIcon = 
@@ -41,7 +42,7 @@ const StyledButton = styled.button`
   font-size: 14px;
   line-height: 20px;
   font-weight: 500;
-  border-radius: 20px;
+  border-radius: ${props => props.$radius || "20px"};
   color: ${
     props => props.$mode === "light" 
     ? "var(--primary-purple)" 
@@ -114,8 +115,4 @@ const StyledButton = styled.button`
       ${defaultHoverShadow}
     }
   `}
-`
-
-const defaultHoverShadow = css`
-  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.24);
 `

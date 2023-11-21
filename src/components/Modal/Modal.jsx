@@ -23,6 +23,7 @@ import {
   toggleDeletingList, 
   toggleRenamingList 
 } from '../../store/actionCreators/todoListUIActionsCreator'
+import { toggleIsLogouting } from '../../store/actionCreators/userPanelUIActionsCreator'
 import Input from '../../ui/Input/Input'
 import Button from '../../ui/Button/Button'
 
@@ -30,6 +31,7 @@ const CREATE = "Create"
 const RENAME = "Rename"
 const DELETE = "Delete"
 const ADD = "Add"
+const IS_LOGOUTING = "Sign Out"
 
 export default function Modal({ isModalOpen, setIsModalOpen }) {
   const context = useContext(AppContext)
@@ -39,7 +41,8 @@ export default function Modal({ isModalOpen, setIsModalOpen }) {
   const isRenamingList = useSelector(store => store.todoListUI.renamingList)
   const isDeletingList = useSelector(store => store.todoListUI.deletingList)
   const isCreatingTodo = useSelector(store => store.todoListUI.creatingTodo)
-  const isActionAvailable = isCreatingList || isRenamingList || isDeletingList || isCreatingTodo
+  const isLogouting = useSelector(store => store.userPanelUI.isLogouting)
+  const isActionAvailable = isCreatingList || isRenamingList || isDeletingList || isCreatingTodo || isLogouting
   
   const activeListId = useSelector(store => store.todoListUI.activeListId)
   const activeList = useSelector(store => store.data).find(list => list.id === activeListId)
@@ -108,6 +111,14 @@ export default function Modal({ isModalOpen, setIsModalOpen }) {
     abort = () => dispatch(toggleCreatingTodo())
   }
 
+  if (isLogouting) {
+    onAction = () => onClose()
+    action = IS_LOGOUTING
+    heading = "Sign out"
+    description = "Are you sure you would like to sign out?"
+    abort = () => dispatch(toggleIsLogouting())
+  }
+
   const onClose = () => {
     isActionAvailable && abort()
     setIsModalOpen(false)
@@ -134,7 +145,7 @@ export default function Modal({ isModalOpen, setIsModalOpen }) {
             {heading}
           </Heading>
 
-          {action !== DELETE
+          {action !== DELETE && action !== IS_LOGOUTING 
             ? <Input
                 ref={inputRef} $mode={context.mode}
                 placeholder={description}
@@ -182,7 +193,7 @@ const ActionButton = ({ onAction, action }) => {
     )
   }
 
-  if (action === DELETE) {
+  if (action === DELETE || action === IS_LOGOUTING) {
     return (
       <Button
         $filled $warning

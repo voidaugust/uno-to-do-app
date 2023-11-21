@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { marginsAndPaddings } from "../marginsAndPaddings"
 
 const ModalBackground = (props) => {
   return <StyledModalBackground {...props} />
@@ -50,7 +51,8 @@ const StyledModalContent = styled.div`
 
 const StyledModalButtons = styled(StyledModalContent)`
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: ${props => props.$justifyContent || "flex-end"};
+  ${marginsAndPaddings}
   gap: 10px;
 `
 

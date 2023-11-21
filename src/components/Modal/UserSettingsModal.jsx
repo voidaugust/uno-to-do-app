@@ -14,6 +14,7 @@ import Heading from '../../ui/Text/Heading'
 import Container from '../../ui/Containers/Container'
 import UserPic from '../../ui/UserPic/UserPic'
 import Text from '../../ui/Text/Text'
+import SettingsButton from '../../ui/Button/SettingsButton'
 
 export default function UserSettingsModal({ areSettingsOpen, setAreSettingsOpen }) {
   const context = useContext(AppContext)
@@ -30,7 +31,7 @@ export default function UserSettingsModal({ areSettingsOpen, setAreSettingsOpen 
     if (e.target === e.currentTarget) onClose()
   }
 
-  const onLogout = () => {console.log("Loging out!")}
+  const onLogout = () => dispatch(toggleIsLogouting())
 
   const onSave = () => {
     dispatch(save())
@@ -50,8 +51,8 @@ export default function UserSettingsModal({ areSettingsOpen, setAreSettingsOpen 
         $justifyContent="space-between"
         $mode={context.mode}
       >
-
         <ModalContent $gap="0">
+
           <Heading $type="h4" $mode={context.mode}>
             Settings
           </Heading>
@@ -62,13 +63,41 @@ export default function UserSettingsModal({ areSettingsOpen, setAreSettingsOpen 
             <SettingHeading $mode={context.mode}>
               General
             </SettingHeading>
-            <SettingSubheading $mode={context.mode}>
-              Color palette
-            </SettingSubheading>
+            
+            <Container $gap="20px">
+
+              <SettingBlock title="Color palette" $mode={context.mode}>
+                <SettingsButton>Purple</SettingsButton>
+                <SettingsButton>Blue</SettingsButton>
+              </SettingBlock>
+
+              <SettingBlock title="Language" $mode={context.mode}>
+                <SettingsButton>English</SettingsButton>
+                <SettingsButton>Russian</SettingsButton>
+              </SettingBlock>
+
+              <SettingBlock title="Mode" $mode={context.mode}>
+                <SettingsButton>Light</SettingsButton>
+                <SettingsButton>Dark</SettingsButton>
+              </SettingBlock>
+            </Container>
 
             <Container as="span" $divider $mode={context.mode} />
-          </Container>
 
+            <SettingHeading $mode={context.mode}>
+              About
+            </SettingHeading>
+
+            <Container $direction="row" $justifyContent="flex-start">
+              <Text $marginInline="0 24px" $mode={context.mode}>
+                Version
+              </Text>
+              <Text $purple $mode={context.mode}>
+                1.0
+              </Text>
+            </Container>
+
+          </Container>
         </ModalContent>
 
         <ModalButtons>
@@ -136,5 +165,30 @@ const SettingSubheading = ({ $mode, children }) => {
     >
       {children}
     </Heading>
+  )
+}
+
+const SettingBlock = ({ $mode, title, children }) => {
+  return (
+    <Container $alignItems="flex-start">
+      <SettingSubheading $mode={$mode}>
+        {title}
+      </SettingSubheading>
+      <ModalButtons 
+        $justifyContent="flex-start"
+        $marginBlock="5px 0"
+      >
+        {children}
+      </ModalButtons>
+      { title === "Language"
+        ? <Text 
+            $secondary $mode={$mode} $size="12px"
+            $marginBlock="5px 0"
+          >
+            Change will be applied at next app restart
+          </Text>
+        : undefined
+      }
+    </Container>
   )
 }
