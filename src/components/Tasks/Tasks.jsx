@@ -3,20 +3,22 @@ import Container from "../../ui/Containers/Container"
 import Task from "./Task"
 import { useMemo } from "react"
 
-export default function Tasks({ 
-  isAllTasksListSelected,
-  isImportantTasksListSelected // ! redo using store
-}) {
+const ALL_TASKS = "allTasks"
+
+export default function Tasks() {
   const activeListId = useSelector(store => store.todoListUI.activeListId)
   const taskLists = useSelector(store => store.data)
   const activeList = taskLists.find(list => list.id === activeListId)
-  const importantTasks = 1
+
+  const isAllTasksListSelected = activeListId === ALL_TASKS
+  const isShowingImportant = useSelector(store => store.todoListUI.showingImportant)
 
   const allTasks = useMemo(() => taskLists.map(list => list.todos).flat(), [taskLists])
+  const importantTasks = useMemo(() => allTasks.filter(task => task.isImportant), [allTasks])
   
   let tasks
   if (isAllTasksListSelected) tasks = allTasks
-  else if (isImportantTasksListSelected) tasks = importantTasks
+  else if (isShowingImportant) tasks = importantTasks
   else tasks = activeList.todos
 
   return (

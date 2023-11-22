@@ -1,4 +1,4 @@
-import { useContext, useMemo, useState } from "react"
+import { useContext, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import AppContext from "../../context/context"
 import Container from "../../ui/Containers/Container"
@@ -18,11 +18,8 @@ export default function TaskList() {
   const taskLists = useSelector(store => store.data)
   const activeListId = useSelector(store => store.todoListUI.activeListId)
   const searchQuery = useSelector(store => store.todoListUI.searchQuery)
+  
   const isSearchNotActive = searchQuery === ""
-
-  // const allTasks = useMemo(() => taskLists.map(list => list.todos).flat(), [taskLists])
-  // const importantTasks = useMemo(() => allTasks.filter(task => task.isImportant), [allTasks])
-
   const isAllTasksListSelected = activeListId === ALL_TASKS
   const isImportantTasksListSelected = activeListId === IMPORTANT
   const isUserListSelected = !isAllTasksListSelected && !isImportantTasksListSelected
@@ -64,12 +61,7 @@ export default function TaskList() {
             setCompletedTabActive={setCompletedTabActive}
             isSearchNotActive={isSearchNotActive}
           />
-          <Tasks 
-            // allTasks={allTasks}
-            isAllTasksListSelected={isAllTasksListSelected}
-            // importantTasks={importantTasks}
-            isImportantTasksListSelected={isImportantTasksListSelected}
-          />
+          <Tasks />
         </Container>
 
         {isUserListSelected 

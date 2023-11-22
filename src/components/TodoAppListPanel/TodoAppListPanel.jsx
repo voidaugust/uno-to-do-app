@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { setActiveListId, setSearchQuery, toggleCreatingList } from '../../store/actionCreators/todoListUIActionsCreator'
+import { setActiveListId, setSearchQuery, toggleCreatingList, toggleShowingImportant } from '../../store/actionCreators/todoListUIActionsCreator'
 import { useCallback, useContext, useEffect, useRef } from 'react'
 import AppContext from '../../context/context'
 import Container from '../../ui/Containers/Container'
@@ -10,6 +10,9 @@ import SearchInput from '../SearchInput/SearchInput'
 import ListItem from '../../ui/ListItem/ListItem'
 import TodoLists from './TodoLists'
 import Button from '../../ui/Button/Button'
+
+const IMPORTANT = "important"
+const ALL_TASKS = "allTasks"
 
 export default function TodoAppListPanel() {
   const dispatch = useDispatch()
@@ -24,10 +27,17 @@ export default function TodoAppListPanel() {
   }, [focusHandler])
 
   const activeListId = useSelector(store => store.todoListUI.activeListId)
-  const setActiveList = (id) => dispatch(setActiveListId({ listId: id }))
+  const isShowingImportant = useSelector(store => store.todoListUI.showingImportant)
 
-  const IMPORTANT = "important"
-  const ALL_TASKS = "allTasks"
+  const setActiveList = (id) => {
+    dispatch(setActiveListId({ listId: id }))
+    isShowingImportant && dispatch(toggleShowingImportant())
+  }
+
+  const setImportantAsActiveList = () => {
+    dispatch(setActiveListId({ listId: IMPORTANT }))
+    dispatch(toggleShowingImportant())
+  }
 
   return (
     <ListPanelContainer $mode={context.mode}>
@@ -47,7 +57,7 @@ export default function TodoAppListPanel() {
             <ListItem 
               $mode={context.mode} key={IMPORTANT}
               $listType={IMPORTANT} $active={activeListId === IMPORTANT}
-              onClick={() => setActiveList(IMPORTANT)}
+              onClick={setImportantAsActiveList}
             />
 
             <ListItem
