@@ -1,12 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { 
-  setActiveListId, 
-  setSearchQuery, 
   toggleCreatingList,
   toggleShowingAllTasks, 
   toggleShowingImportant 
 } from '../../store/actionCreators/todoListUIActionsCreator'
-import { useCallback, useContext, useEffect, useRef } from 'react'
+import { useContext } from 'react'
 import AppContext from '../../context/context'
 import Container from '../../ui/Containers/Container'
 import ListPanelContainer from '../../ui/Containers/ListPanelContainer'
@@ -21,21 +19,10 @@ const IMPORTANT = "important"
 const ALL_TASKS = "allTasks"
 
 export default function TodoAppListPanel() {
-  const dispatch = useDispatch()
   const context = useContext(AppContext)
-
-  const searchInputRef = useRef(null)
-  const focusHandler = useCallback(() => console.log("focused"), [])
-  useEffect(() => {
-    const ref = searchInputRef.current
-    ref.addEventListener("focus", focusHandler)
-    return () => ref.removeEventListener("focus", focusHandler)
-  }, [focusHandler])
-
   const isShowingAllTasks = useSelector(store => store.todoListUI.showingAllTasks)
   const isShowingImportant = useSelector(store => store.todoListUI.showingImportant)
-
-  const setActiveList = (id) => dispatch(setActiveListId({ listId: id }))
+  const dispatch = useDispatch()
 
   return (
     <ListPanelContainer $mode={context.mode}>
@@ -43,28 +30,24 @@ export default function TodoAppListPanel() {
 
         <Container $mode={context.mode}>
           <UserName />
-          <SearchInput
-            ref={searchInputRef}
-            $mode={context.mode}
-            onChange={(e) => {
-              dispatch(setSearchQuery({ searchQuery: e.target.value }))
-            }}
-          />
+          <SearchInput />
 
           <Container as="ul" $mode={context.mode} $scrolling>
             <ListItem 
-              $mode={context.mode} key={IMPORTANT}
-              $listType={IMPORTANT} $active={isShowingImportant}
+              key={IMPORTANT} $listType={IMPORTANT} 
+              $mode={context.mode} $active={isShowingImportant}
               onClick={() => dispatch(toggleShowingImportant())}
             />
 
             <ListItem
-              $mode={context.mode} key={ALL_TASKS}
-              $listType={ALL_TASKS} $active={isShowingAllTasks}
+              key={ALL_TASKS} $listType={ALL_TASKS} 
+              $mode={context.mode} $active={isShowingAllTasks}
               onClick={() => dispatch(toggleShowingAllTasks())}
             />
+
             <Container as="span" $divider $mode={context.mode} />
-            <TodoLists setActiveList={setActiveList} />
+            
+            <TodoLists />
           </Container>
 
         </Container>

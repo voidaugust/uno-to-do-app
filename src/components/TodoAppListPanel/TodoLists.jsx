@@ -1,12 +1,16 @@
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useContext } from 'react'
 import ListItem from '../../ui/ListItem/ListItem'
 import AppContext from '../../context/context'
+import { setActiveListId } from '../../store/actionCreators/todoListUIActionsCreator'
 
-export default function TodoLists({ setActiveList }) {
+export default function TodoLists() {
+  const context = useContext(AppContext)
   const todoLists = useSelector(state => state.data)
   const activeListId = useSelector(store => store.todoListUI.activeListId)
-  const context = useContext(AppContext)
+  
+  const dispatch = useDispatch()
+  const setActiveList = (id) => dispatch(setActiveListId({ listId: id }))
 
   return (
     <>
