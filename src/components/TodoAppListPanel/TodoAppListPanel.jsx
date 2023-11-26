@@ -7,13 +7,12 @@ import {
 import { useContext } from 'react'
 import AppContext from '../../context/context'
 import Container from '../../ui/Containers/Container'
-import ListPanelContainer from '../../ui/Containers/ListPanelContainer'
-import ListPanelNav from '../../ui/Containers/ListPanelNav'
 import UserName from '../UserName/UserName'
 import SearchInput from '../SearchInput/SearchInput'
 import ListItem from '../../ui/ListItem/ListItem'
 import TodoLists from './TodoLists'
 import Button from '../../ui/Button/Button'
+import styled from 'styled-components'
 
 const IMPORTANT = "important"
 const ALL_TASKS = "allTasks"
@@ -66,3 +65,24 @@ export default function TodoAppListPanel() {
     </ListPanelContainer>
   )
 }
+
+const ListPanelNav = styled.nav`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+`
+
+const ListPanelContainer = (props) => {
+  return <StyledListPanelContainer {...props} />
+}
+
+const StyledListPanelContainer = styled(Container)`
+  justify-content: flex-start;
+  padding-block: 40px 20px;
+  width: 80%;
+  min-width: 240px;
+  height: 100%;
+  background-color: ${props => props.$mode === "light" ? "white" : "var(--dark-mode-background)"};
+`
