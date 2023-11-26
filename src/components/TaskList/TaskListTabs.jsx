@@ -2,15 +2,22 @@ import { useContext } from 'react'
 import AppContext from '../../context/context'
 import Container from '../../ui/Containers/Container'
 import styled from 'styled-components'
+import { useDispatch, useSelector } from 'react-redux'
+import { toggleShowingCompleted } from '../../store/actionCreators/todoListUIActionsCreator'
 
 const TAB_TODO = "tab-todo"
 const TAB_COMPLETED = "tab-completed"
 
-export default function TaskListTabs({ 
-  activeTab, setTodoTabActive, 
-  setCompletedTabActive, isSearchNotActive
-}) {
+export default function TaskListTabs() {
   const context = useContext(AppContext)
+  const isShowingCompleted = useSelector(store => store.todoListUI.showingCompleted)
+  const searchQuery = useSelector(store => store.todoListUI.searchQuery)
+  const isSearchNotActive = searchQuery === ""
+
+  const dispatch = useDispatch()
+  const setTodoTabActive = () => dispatch(toggleShowingCompleted(false))
+  const setCompletedTabActive = () => dispatch(toggleShowingCompleted(true))
+  
 
   return (
     isSearchNotActive ? ( 
@@ -18,14 +25,14 @@ export default function TaskListTabs({
         <TabContainer $mode={context.mode}>
 
           <Tab 
-            $mode={context.mode} $active={activeTab === TAB_TODO}
+            $mode={context.mode} $active={!isShowingCompleted}
             id={TAB_TODO} onClick={setTodoTabActive}
           >
             To Do
           </Tab>
 
           <Tab 
-            $mode={context.mode} $active={activeTab === TAB_COMPLETED}
+            $mode={context.mode} $active={isShowingCompleted}
             id={TAB_COMPLETED} onClick={setCompletedTabActive}
           >
             Completed

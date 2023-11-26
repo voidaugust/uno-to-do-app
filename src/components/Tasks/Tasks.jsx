@@ -10,9 +10,7 @@ export default function Tasks() {
   const isShowingAllTasks = useSelector(store => store.todoListUI.showingAllTasks)
   const isShowingImportant = useSelector(store => store.todoListUI.showingImportant)
 
-  // ! ADD LIST ID TO EVERY TODO IN DATA STORE
-
-  const allTasks = useMemo(() => taskLists.map(list => list.todos).flat(), [taskLists])
+  const allTasks = useMemo(() => taskLists.map(list => list.todos).flat(Infinity), [taskLists])
   const importantTasks = useMemo(() => allTasks.filter(task => task.isImportant), [allTasks])
   
   let tasks
