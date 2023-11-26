@@ -20,9 +20,9 @@ export const TaskContainer = styled.li`
 export const Checkbox = (props) => <StyledCheckbox {...props} />
 
 const StyledCheckbox = styled.input.attrs({ type: "checkbox" })`
-transform: scale(1.5);
-accent-color: ${props => props.$mode === "light" ? "var(--primary-purple)" : "var(--on-dark-primary-purple)"};
-${defaultAnimation}
+  transform: scale(1.5);
+  accent-color: ${props => props.$mode === "light" ? "var(--primary-purple)" : "var(--on-dark-primary-purple)"};
+  ${defaultAnimation}
 `
 
 export const TaskInfoContainer = (props) => <StyledTaskInfoContainer {...props} />

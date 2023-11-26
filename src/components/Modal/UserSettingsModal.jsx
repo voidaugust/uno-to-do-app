@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import AppContext from '../../context/context'
 import { useDispatch, useSelector } from 'react-redux'
 import { createPortal } from 'react-dom'
@@ -16,15 +16,12 @@ import UserPic from '../../ui/UserPic/UserPic'
 import Text from '../../ui/Text/Text'
 import SettingsButton from '../../ui/Button/SettingsButton'
 
-export default function UserSettingsModal({ areSettingsOpen, setAreSettingsOpen }) {
+export default function UserSettingsModal() {
   const context = useContext(AppContext)
   const isShowingUserPanel = useSelector(store => store.userPanelUI.isShowingUserPanel)
   const dispatch = useDispatch()
 
-  const onClose = () => {
-    dispatch(toggleShowingUserPanel())
-    setAreSettingsOpen(false)
-  }
+  const onClose = () => dispatch(toggleShowingUserPanel())
 
   const backgroundOnClose = (e) => {
     e.preventDefault()
@@ -38,12 +35,7 @@ export default function UserSettingsModal({ areSettingsOpen, setAreSettingsOpen 
     onClose()
   }
 
-  const openModal = useCallback(() => setAreSettingsOpen(true), [setAreSettingsOpen])
-  useEffect(() => {
-    isShowingUserPanel && openModal()
-  }, [isShowingUserPanel, openModal])
-
-  if (!areSettingsOpen) return undefined
+  if (!isShowingUserPanel) return undefined
 
   return createPortal(
     <ModalBackground onClick={(e) => backgroundOnClose(e)}>

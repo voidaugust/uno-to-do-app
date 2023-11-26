@@ -3,21 +3,20 @@ import Container from "../../ui/Containers/Container"
 import Task from "./Task"
 import { useMemo } from "react"
 
-const ALL_TASKS = "allTasks"
-
 export default function Tasks() {
   const activeListId = useSelector(store => store.todoListUI.activeListId)
   const taskLists = useSelector(store => store.data)
   const activeList = taskLists.find(list => list.id === activeListId)
-
-  const isAllTasksListSelected = activeListId === ALL_TASKS
+  const isShowingAllTasks = useSelector(store => store.todoListUI.showingAllTasks)
   const isShowingImportant = useSelector(store => store.todoListUI.showingImportant)
+
+  // ! ADD LIST ID TO EVERY TODO IN DATA STORE
 
   const allTasks = useMemo(() => taskLists.map(list => list.todos).flat(), [taskLists])
   const importantTasks = useMemo(() => allTasks.filter(task => task.isImportant), [allTasks])
   
   let tasks
-  if (isAllTasksListSelected) tasks = allTasks
+  if (isShowingAllTasks) tasks = allTasks
   else if (isShowingImportant) tasks = importantTasks
   else tasks = activeList.todos
 
@@ -27,8 +26,8 @@ export default function Tasks() {
         {
           tasks.map(task => (
             <Task 
-              key={task.id} id={task.id}
-              title={task.title}
+              key={task.id} title={task.title} 
+              id={task.id} listId={task.listId}
               isCompleted={task.isCompleted}
               isImportant={task.isImportant}
               createdDate={task.createdDate}

@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useRef } from 'react'
+import { useContext, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { createPortal } from 'react-dom'
 import AppContext from '../../context/context'
@@ -33,7 +33,7 @@ const DELETE = "Delete"
 const ADD = "Add"
 const IS_LOGOUTING = "Sign Out"
 
-export default function Modal({ isModalOpen, setIsModalOpen }) {
+export default function Modal() {
   const context = useContext(AppContext)
   const inputRef = useRef(null)
 
@@ -119,22 +119,14 @@ export default function Modal({ isModalOpen, setIsModalOpen }) {
     abort = () => dispatch(toggleIsLogouting())
   }
 
-  const onClose = () => {
-    isActionAvailable && abort()
-    setIsModalOpen(false)
-  }
+  const onClose = () => isActionAvailable && abort()
 
   const backgroundOnClose = (e) => {
     e.preventDefault()
     if (e.target === e.currentTarget) onClose()
   }
 
-  const openModal = useCallback(() => setIsModalOpen(true), [setIsModalOpen])
-  useEffect(() => {
-    isActionAvailable && openModal()
-  }, [isActionAvailable, openModal])
-
-  if (!isModalOpen) return undefined
+  if (!isActionAvailable) return undefined
 
   return createPortal(
     <ModalBackground onClick={(e) => backgroundOnClose(e)}>

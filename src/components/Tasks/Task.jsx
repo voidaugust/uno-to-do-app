@@ -11,18 +11,17 @@ import Text from "../../ui/Text/Text"
 
 export default function Task(props) {
   const context = useContext(AppContext)
-  const activeListId = useSelector(store => store.todoListUI.activeListId)
   const dispatch = useDispatch()
   
   const isImportant = props.isImportant ? importantIconFilled : importantIconNotFilled
 
   const onSetCompleted = () => dispatch(setCompleted({ 
-    listId: activeListId,
+    listId: props.listId,
     todoId: props.id
   }))
 
   const onSetImportant = () => dispatch(setImportant({ 
-    listId: activeListId,
+    listId: props.listId,
     todoId: props.id
   }))
 

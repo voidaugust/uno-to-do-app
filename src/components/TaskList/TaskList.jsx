@@ -10,8 +10,6 @@ import { toggleCreatingTodo } from "../../store/actionCreators/todoListUIActions
 
 const TAB_TODO = "tab-todo"
 const TAB_COMPLETED = "tab-completed"
-const ALL_TASKS = "allTasks"
-const IMPORTANT = "important"
 
 export default function TaskList() {
   const context = useContext(AppContext)
@@ -20,25 +18,16 @@ export default function TaskList() {
   const searchQuery = useSelector(store => store.todoListUI.searchQuery)
   
   const isSearchNotActive = searchQuery === ""
-  const isAllTasksListSelected = activeListId === ALL_TASKS
-  const isImportantTasksListSelected = activeListId === IMPORTANT
-  const isUserListSelected = !isAllTasksListSelected && !isImportantTasksListSelected
+  const isShowingAllTasks = useSelector(store => store.todoListUI.showingAllTasks)
+  const isShowingImportant = useSelector(store => store.todoListUI.showingImportant)
+  const isUserListSelected = !isShowingAllTasks && !isShowingImportant
 
   const dispatch = useDispatch()
 
   let activeListTitle 
-  
-  switch (activeListId) {
-    case "important": 
-      activeListTitle = "Important"
-      break
-    case "allTasks": 
-      activeListTitle = "Tasks"
-      break
-    default: 
-      activeListTitle = taskLists.find(list => list.id === activeListId).title
-      break
-  }
+  if (isShowingAllTasks) activeListTitle = "Tasks"
+  else if (isShowingImportant) activeListTitle = "Important"
+  else activeListTitle = taskLists.find(list => list.id === activeListId).title
 
   const [activeTab, setActiveTab] = useState(TAB_TODO)
   const setTodoTabActive = () => setActiveTab(TAB_TODO)
