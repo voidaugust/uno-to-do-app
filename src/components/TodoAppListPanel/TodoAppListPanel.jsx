@@ -66,14 +66,6 @@ export default function TodoAppListPanel() {
   )
 }
 
-const ListPanelNav = styled.nav`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
-  height: 100%;
-`
-
 const ListPanelContainer = (props) => {
   return <StyledListPanelContainer {...props} />
 }
@@ -85,4 +77,12 @@ const StyledListPanelContainer = styled(Container)`
   min-width: 240px;
   height: 100%;
   background-color: ${props => props.$mode === "light" ? "white" : "var(--dark-mode-background)"};
+`
+
+const ListPanelNav = styled.nav`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
 `

@@ -13,7 +13,9 @@ export default function TaskList() {
   
   const isShowingAllTasks = useSelector(store => store.todoListUI.showingAllTasks)
   const isShowingImportant = useSelector(store => store.todoListUI.showingImportant)
-  const isUserListSelected = !isShowingAllTasks && !isShowingImportant
+  const searchQuery = useSelector(store => store.todoListUI.searchQuery)
+  const isSearching = searchQuery !== ""
+  const isUserListSelected = !isShowingAllTasks && !isShowingImportant && !isSearching
 
   const dispatch = useDispatch()
 
