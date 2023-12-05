@@ -20,6 +20,7 @@ const StyledContainer = styled.div`
   max-width: ${props => props.$maxWidth};
   height: ${props => props.$height || "auto"};
   background-color: ${props => props.$bgColor || "transparent"};
+  border-radius: ${props => props.$radius || 0};
   cursor: ${props => props.$cursor || "auto"};
   
   ${defaultAnimation}
