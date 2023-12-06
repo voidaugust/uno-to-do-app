@@ -7,9 +7,13 @@ import TaskList from '../TaskList/TaskList'
 import Modal from '../Modal/Modal'
 import UserSettingsModal from '../Modal/UserSettingsModal'
 import styled from 'styled-components'
+import TodoPanel from '../TodoPanel/TodoPanel'
+import { useSelector } from 'react-redux'
 
 export default function TodoApp() {
   const context = useContext(AppContext)
+  const activeTask = useSelector(store => store.todoListUI.activeTaskId)
+  const isActiveTaskSet = activeTask !== null
 
   return (
     <>
@@ -17,16 +21,28 @@ export default function TodoApp() {
       <UserSettingsModal />
       <MainWrapper $mode={context.mode}>
         <Container 
-          $width="30dvw" $minWidth="280px" $height="100%" 
+          $width="25vw" $minWidth="280px" $height="100%" 
           $mode={context.mode} $modeBg
         >
           <TodoAppListPanel />
         </Container>
 
-        <TaskListContainer $mode={context.mode}>
+        <TaskListContainer
+          $width={isActiveTaskSet ? "50vw" : "75vw"}
+          $mode={context.mode}
+        >
           <TaskList />
         </TaskListContainer>
 
+        {isActiveTaskSet
+          ? <Container
+            $width="25vw" $minWidth="280px" $height="100%" 
+            $mode={context.mode} $modeBg
+          >
+            <TodoPanel />
+          </Container>
+          : undefined
+        }
       </MainWrapper>
     </>
   )
@@ -36,7 +52,7 @@ const TaskListContainer = styled(Container)`
   justify-content: flex-start;
   padding-block: 20px;
   padding-inline: 20px;
-  width: 70dvw;
+  width: ${props => props.$width};
   height: 100%;
   background-color: 
     ${props => props.$mode === "light"

@@ -1,7 +1,8 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import Container from "../../ui/Containers/Container"
 import Task from "./Task"
 import { useMemo } from "react"
+import { setActiveTaskId } from "../../store/actionCreators/todoListUIActionsCreator/"
 
 export default function Tasks() {
   const activeListId = useSelector(store => store.todoListUI.activeListId)
@@ -19,6 +20,9 @@ export default function Tasks() {
     task => task.title.toLowerCase().includes(searchQuery.toLowerCase())
   ), [allTasks, searchQuery])
 
+  const dispatch = useDispatch()
+  const setActiveTask = (id) => dispatch(setActiveTaskId({ id }))
+
   let tasks
 
   if (isSearching) tasks = searchedTasks
@@ -28,7 +32,9 @@ export default function Tasks() {
 
   return (
     tasks.length > 0 
-      ? <Container as="ul" $marginBlock="10px 0" $gap="5px">
+      ? <Container 
+        as="ul" $marginBlock="10px 0" $gap="5px" $height="100%"
+      >
         {
           tasks.map(task => (
             <Task 
@@ -38,6 +44,7 @@ export default function Tasks() {
               isImportant={task.isImportant}
               createdDate={task.createdDate}
               dueDate={task.dueDate}
+              setActive={setActiveTask}
             />
           ))
         }

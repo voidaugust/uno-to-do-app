@@ -6,7 +6,7 @@ import TaskListHeader from "./TaskListHeader"
 import TaskListTabs from "./TaskListTabs"
 import Tasks from "../Tasks/Tasks"
 import Button from "../../ui/Button/Button"
-import { toggleCreatingTodo } from "../../store/actionCreators/todoListUIActionsCreator"
+import { setActiveTaskId, toggleCreatingTodo } from "../../store/actionCreators/todoListUIActionsCreator"
 import TasksNotFound from "../Tasks/TasksNotFound"
 
 export default function TaskList() {
@@ -27,12 +27,17 @@ export default function TaskList() {
   const noTasksFound = isSearching && searchedTasks.length === 0
 
   const dispatch = useDispatch()
+  const unsetActiveTask = (e) => {
+    e.preventDefault()
+    if (e.target === e.currentTarget) dispatch(setActiveTaskId({ id: null }))
+  }
 
   return (
     <>
       <Container 
         $mode={context.mode} $height="100%"
         $alignItems="flex-start" $justifyContent="space-between"
+        onClick={(e) => unsetActiveTask(e)}
       >
         <Container>
           <TaskListHeader />

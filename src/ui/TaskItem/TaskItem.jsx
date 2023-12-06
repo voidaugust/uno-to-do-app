@@ -32,4 +32,5 @@ const StyledTaskInfoContainer = styled(Container)`
   align-items: flex-start;
   margin-inline: 16px 0;
   color: ${props => props.$mode === "light" ? "white" : "black"};
+  cursor: pointer;
 `

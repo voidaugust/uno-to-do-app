@@ -7,6 +7,7 @@ const todoListUIInitialState = {
   showingAllTasks: false,
   showingImportant: false,
   activeListId: "1",
+  activeTaskId: null,
   searchQuery: ""
 }
 
