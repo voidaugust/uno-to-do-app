@@ -1,0 +1,6 @@
+export const CREATE = "Create"
+export const RENAME = "Rename"
+export const DELETE_LIST = "Delete"
+export const ADD = "Add"
+export const DELETE_TASK = "Delete"
+export const IS_LOGOUTING = "Sign Out"

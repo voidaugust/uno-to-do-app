@@ -133,6 +133,7 @@ export default function dataReducer(state = dataInitialState, {type, payload}) {
         ...list, 
         todos: list.todos.filter(todo => todo.id !== payload.todoId)
       }
+      return list
     })
 
     default: return state
