@@ -1,5 +1,4 @@
 import { useContext } from 'react'
-import { useSelector } from 'react-redux'
 import { createPortal } from 'react-dom'
 import AppContext from '../../context/context'
 import { 
@@ -18,16 +17,6 @@ import useModalData from './useModalData'
 export default function Modal() {
   const context = useContext(AppContext)
 
-  const isCreatingList = useSelector(store => store.todoListUI.creatingList)
-  const isRenamingList = useSelector(store => store.todoListUI.renamingList)
-  const isDeletingList = useSelector(store => store.todoListUI.deletingList)
-  const isCreatingTodo = useSelector(store => store.todoListUI.creatingTodo)
-  const isDeletingTodo = useSelector(store => store.todoPanelUI.isTodoDeletingConfirmation)
-  const isLogouting = useSelector(store => store.userPanelUI.isLogouting)
-  const isActionAvailable = 
-    isCreatingList || isRenamingList || isDeletingList || 
-    isCreatingTodo || isDeletingTodo || isLogouting
-  
   const modal = useModalData()
 
   const backgroundOnClose = (e) => {
@@ -35,8 +24,7 @@ export default function Modal() {
     if (e.target === e.currentTarget) modal.onClose()
   }
 
-  if (!isActionAvailable) return undefined
-
+  if (!modal.isActionAvailable) return undefined
   return createPortal(
     <ModalBackground onClick={(e) => backgroundOnClose(e)}>
       <ModalContainer $mode={context.mode}>

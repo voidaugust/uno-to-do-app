@@ -44,7 +44,6 @@ export default function useModalData() {
 
   const dispatch = useDispatch()
   const inputRef = useRef(null)
-
   let textType
   let onAction
   let action
@@ -140,8 +139,8 @@ export default function useModalData() {
       ? "editable"
       : "uneditable"
 
-  if (!isActionAvailable) return undefined
-  return { 
+  return {
+    isActionAvailable, 
     inputRef,
     textType,
     onAction, 

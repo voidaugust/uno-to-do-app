@@ -19,7 +19,7 @@ const ModalButtons = (props) => {
 
 const StyledModalBackground = styled.div`
   position: fixed;
-  z-index: 666;
+  z-index: 3;
   top: 0;
   left: 0;
   width: 100%;

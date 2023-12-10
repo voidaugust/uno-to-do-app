@@ -52,7 +52,10 @@ export default function todoListUIReducer(
       activeTaskId: payload.id 
     }
     
-    case SET_SEARCH_QUERY: return { ...state, searchQuery: payload.searchQuery }
+    case SET_SEARCH_QUERY: return { 
+      ...state, 
+      searchQuery: payload.searchQuery 
+    }
 
     default: return state
   }

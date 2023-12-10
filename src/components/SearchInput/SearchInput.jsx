@@ -28,10 +28,8 @@ export default function SearchInput() {
       <Icon $src={searchIcon} $left={"16px"} />
       <Input 
         ref={searchInputRef} $mode={context.mode}
-        
         placeholder="Search" $search
         $paddingInline="calc(16px + 24px + 8px) 16px"
-
         onChange={(e) => {
           dispatch(setSearchQuery({ searchQuery: e.target.value }))
         }}
