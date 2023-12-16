@@ -17,13 +17,20 @@ import Text from '../../ui/Text/Text'
 import SettingsButton from '../../ui/Button/SettingsButton'
 import { saveSettingsAndCloseUserPanel } from '../../store/actionCreators/thunks'
 
+const PURPLE = "purple"
+const BLUE = "blue"
+const ENGLISH = "eng"
+const RUSSIAN = "rus"
+const LIGHT = "light"
+const DARK = "dark"
+
 export default function UserSettingsModal() {
   const context = useContext(AppContext)
   const isShowingUserPanel = useSelector(store => store.userPanelUI.isShowingUserPanel)
 
-  const [selectedLang, setSelectedLang] = useState("eng")
-  const [selectedPalette, setSelectedPalette] = useState("purple")
-  const [selectedMode, setSelectedMode] = useState("light")
+  const [selectedLang, setSelectedLang] = useState(ENGLISH)
+  const [selectedPalette, setSelectedPalette] = useState(PURPLE)
+  const [selectedMode, setSelectedMode] = useState(LIGHT)
 
   const dispatch = useDispatch()
 
@@ -43,6 +50,17 @@ export default function UserSettingsModal() {
       mode: selectedMode
     }))
   }
+
+  // const OptionButton = (props) => {
+  //   <SettingsButton
+  //     $mode={context.mode}
+  //     // onClick={props.onClick}
+  //     $active={props.$active}
+  //     {...props}
+  //   >
+  //      {props.children}
+  //    </SettingsButton>
+  // }
 
   if (!isShowingUserPanel) return undefined
 
@@ -68,28 +86,52 @@ export default function UserSettingsModal() {
             <Container $gap="20px">
 
               <SettingBlock title="Color palette" $mode={context.mode}>
-                <SettingsButton onClick={() => setSelectedPalette("purple")}>
+                <SettingsButton
+                  $mode={context.mode}
+                  onClick={() => setSelectedPalette(PURPLE)}
+                  $active={selectedPalette === PURPLE}
+                >
                   Purple
                 </SettingsButton>
-                <SettingsButton onClick={() => setSelectedPalette("blue")}>
+                <SettingsButton
+                  $mode={context.mode} 
+                  onClick={() => setSelectedPalette(BLUE)}
+                  $active={selectedPalette === BLUE}
+                >
                   Blue
                 </SettingsButton>
               </SettingBlock>
 
               <SettingBlock title="Language" $mode={context.mode}>
-                <SettingsButton onClick={() => setSelectedLang("eng")}>
+                <SettingsButton 
+                  $mode={context.mode}
+                  onClick={() => setSelectedLang(ENGLISH)}
+                  $active={selectedLang === ENGLISH}
+                >
                   English
                 </SettingsButton>
-                <SettingsButton onClick={() => setSelectedLang("rus")}>
+                <SettingsButton 
+                  $mode={context.mode}
+                  onClick={() => setSelectedLang(RUSSIAN)}
+                  $active={selectedLang === RUSSIAN}
+                >
                   Russian
                 </SettingsButton>
               </SettingBlock>
 
               <SettingBlock title="Mode" $mode={context.mode}>
-                <SettingsButton onClick={() => setSelectedMode("light")}>
+                <SettingsButton 
+                  $mode={context.mode}
+                  onClick={() => setSelectedMode(LIGHT)}
+                  $active={selectedMode === LIGHT}
+                >
                   Light
                 </SettingsButton>
-                <SettingsButton onClick={() => setSelectedMode("dark")}>
+                <SettingsButton 
+                  $mode={context.mode}
+                  onClick={() => setSelectedMode(DARK)}
+                  $active={selectedMode === DARK}
+                >
                   Dark
                 </SettingsButton>
               </SettingBlock>

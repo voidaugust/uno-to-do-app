@@ -47,6 +47,9 @@ const GlobalStyle = createGlobalStyle`
     --over-dark-grey-variant: #E6E1E561;
     --over-dark-surface-grey: #E6E1E529;
 
+    --over-light-grey-opaque-variant: #A5A0AC;
+    --over-dark-grey-opaque-variant: #CAC4D0;
+
     --light-pink: #F85977;
     --dark-pink: #D9415E;
 

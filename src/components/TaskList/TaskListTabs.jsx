@@ -29,14 +29,14 @@ export default function TaskListTabs() {
 
           <Tab 
             $mode={context.mode} $active={!isShowingCompleted}
-            id={TAB_TODO} onClick={setTodoTabActive}
+            key={TAB_TODO} id={TAB_TODO} onClick={setTodoTabActive}
           >
             To Do
           </Tab>
 
           <Tab 
             $mode={context.mode} $active={isShowingCompleted}
-            id={TAB_COMPLETED} onClick={setCompletedTabActive}
+            key={TAB_COMPLETED} id={TAB_COMPLETED} onClick={setCompletedTabActive}
           >
             Completed
           </Tab>
