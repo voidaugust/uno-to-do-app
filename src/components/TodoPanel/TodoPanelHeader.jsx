@@ -6,7 +6,11 @@ import Text from "../../ui/Text/Text"
 import Icon from "../../ui/Icons/Icon"
 import { Checkbox } from "../../ui/TaskItem/TaskItem"
 import SquareIconButton from "../../ui/Button/SquareIconButton"
-import { importantIconFilled, importantIconNotFilled } from "../../ui/Icons/iconTypes"
+import { 
+  importantIconFilled, 
+  importantIconNotFilledOnLight,
+  importantIconNotFilledOnDark
+} from "../../ui/Icons/iconTypes"
 import { setCompleted, setImportant } from "../../store/actionCreators/dataActionsCreator"
 
 export default function TodoPanelHeader({ activeTask }) {
@@ -22,6 +26,10 @@ export default function TodoPanelHeader({ activeTask }) {
     todoId: activeTask.id
   }))
 
+  const importantIconNotFilled = 
+    context.mode === "light" 
+      ? importantIconNotFilledOnLight 
+      : importantIconNotFilledOnDark 
   const isImportant = activeTask.isImportant ? importantIconFilled : importantIconNotFilled
 
   return (

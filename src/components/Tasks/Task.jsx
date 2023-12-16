@@ -6,13 +6,21 @@ import { Checkbox, TaskContainer, TaskInfoContainer } from "../../ui/TaskItem/Ta
 import Container from "../../ui/Containers/Container"
 import SquareIconButton from "../../ui/Button/SquareIconButton"
 import Icon from "../../ui/Icons/Icon"
-import { importantIconFilled, importantIconNotFilled } from "../../ui/Icons/iconTypes"
+import { 
+  importantIconFilled, 
+  importantIconNotFilledOnLight,
+  importantIconNotFilledOnDark
+} from "../../ui/Icons/iconTypes"
 import Text from "../../ui/Text/Text"
 
 export default function Task(props) {
   const context = useContext(AppContext)
   const dispatch = useDispatch()
   
+  const importantIconNotFilled = 
+    context.mode === "light" 
+      ? importantIconNotFilledOnLight 
+      : importantIconNotFilledOnDark 
   const isImportant = props.isImportant ? importantIconFilled : importantIconNotFilled
 
   const onSetCompleted = (e) => {

@@ -14,8 +14,12 @@ export const plusIconOnDark = `<svg xmlns="http://www.w3.org/2000/svg" width="18
   <path d="M17 10.1429H10.1429V17H7.85714V10.1429H1V7.85714H7.85714V1H10.1429V7.85714H17V10.1429Z" fill="#9373FF"/>
 </svg>`
 
-export const importantIconNotFilled = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+export const importantIconNotFilledOnLight = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
   <path fill-rule="evenodd" clip-rule="evenodd" d="M14.027 10.8 12 4.128 9.973 10.8H3.748l5.071 3.619 -1.969 6.36L12 16.866l5.165 3.92 -1.972 -6.366L20.257 10.8H14.028ZM24 9.6l-7.404 5.292L19.416 24 12 18.372 4.596 24l2.82 -9.108L0 9.6h9.084L12 0l2.916 9.6H24Z" fill="#1C1B1F" fill-opacity="0.38"/>
+</svg>`
+
+export const importantIconNotFilledOnDark = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M11.6886 9L10 3.4407L8.31136 9H3.12293L7.34894 12.0156L5.70765 17.3166L9.99951 14.0543L14.3036 17.3206L12.6612 12.0162L16.8812 9H11.6886ZM20 8L13.83 12.41L16.18 20L10 15.31L3.83 20L6.18 12.41L0 8H7.57L10 0L12.43 8H20Z" fill="#E6E1E5" fill-opacity="0.38"/>
 </svg>`
 
 export const importantIconFilled = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
