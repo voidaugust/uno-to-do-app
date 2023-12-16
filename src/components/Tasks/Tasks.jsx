@@ -11,10 +11,14 @@ export default function Tasks() {
 
   const isShowingAllTasks = useSelector(store => store.todoListUI.showingAllTasks)
   const isShowingImportant = useSelector(store => store.todoListUI.showingImportant)
+  const isShowingCompleted = useSelector(store => store.todoListUI.showingCompleted)
+
   const searchQuery = useSelector(store => store.todoListUI.searchQuery)
   const isSearching = searchQuery !== ""
 
   const allTasks = useMemo(() => taskLists.map(list => list.todos).flat(Infinity), [taskLists])
+  const tasksToDo = useMemo(() => allTasks.filter(task => !task.isCompleted), [allTasks])
+
   const importantTasks = useMemo(() => allTasks.filter(task => task.isImportant), [allTasks])
   const searchedTasks = useMemo(() => allTasks.filter(
     task => task.title.toLowerCase().includes(searchQuery.toLowerCase())
@@ -26,9 +30,12 @@ export default function Tasks() {
   let tasks
 
   if (isSearching) tasks = searchedTasks
-  else if (isShowingAllTasks) tasks = allTasks
+  else if (isShowingAllTasks) tasks = tasksToDo
   else if (isShowingImportant) tasks = importantTasks
-  else tasks = activeList.todos
+  else tasks = 
+    isShowingCompleted 
+      ? activeList.todos.filter(task => task.isCompleted)
+      : activeList.todos.filter(task => !task.isCompleted)
 
   return (
     tasks.length > 0 

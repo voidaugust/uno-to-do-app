@@ -1,6 +1,13 @@
-import { deleteList, deleteTodo } from "./dataActionsCreator"
-import { setActiveListId, setActiveTaskId, toggleShowingAllTasks, toggleShowingImportant } from "./todoListUIActionsCreator"
-import { saveSettings, toggleShowingUserPanel } from "./userPanelUIActionsCreator"
+import { 
+  deleteList, deleteTodo 
+} from "./dataActionsCreator"
+import { 
+  setActiveListId, setActiveTaskId, 
+  toggleShowingAllTasks, toggleShowingImportant 
+} from "./todoListUIActionsCreator"
+import { 
+  saveSettings, toggleShowingUserPanel 
+} from "./userPanelUIActionsCreator"
 
 const saveSettingsAndCloseUserPanel = (payload) => {
   return (dispatch) => {
@@ -43,14 +50,12 @@ const confirmDeletingList = (payload) => {
 const confirmDeletingTodo = (payload) => {
   return (dispatch) => {
     dispatch(deleteTodo({ 
-        listId: payload.listId,
-        todoId: payload.todoId
-      }))
+      listId: payload.listId,
+      todoId: payload.todoId
+    }))
     dispatch(setActiveTaskId({ id: null }))
   }
 }
-
-// 5–6 more of these!
 
 export {
   saveSettingsAndCloseUserPanel,

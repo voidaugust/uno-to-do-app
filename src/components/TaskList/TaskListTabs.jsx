@@ -15,9 +15,12 @@ export default function TaskListTabs() {
   const isSearchNotActive = searchQuery === ""
 
   const dispatch = useDispatch()
-  const setTodoTabActive = () => dispatch(toggleShowingCompleted(false))
-  const setCompletedTabActive = () => dispatch(toggleShowingCompleted(true))
-  
+  const setTodoTabActive = () => dispatch(
+    toggleShowingCompleted({ isShowingCompleted: false }
+  ))
+  const setCompletedTabActive = () => dispatch(
+    toggleShowingCompleted({ isShowingCompleted: true }
+  ))
 
   return (
     isSearchNotActive ? ( 

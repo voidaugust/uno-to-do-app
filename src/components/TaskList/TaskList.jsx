@@ -41,7 +41,7 @@ export default function TaskList() {
       >
         <Container>
           <TaskListHeader />
-          <TaskListTabs />
+          {isUserListSelected ? <TaskListTabs /> : undefined}
           {noTasksFound ? <TasksNotFound /> : <Tasks />}
         </Container>
 
