@@ -1,5 +1,5 @@
 import { useContext, useMemo } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import AppContext from '../../context/context'
 import Container from '../../ui/Containers/Container'
 import styled from 'styled-components'

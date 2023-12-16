@@ -8,18 +8,18 @@ import {
 import { 
   addTodoToList, 
   changeListTitle,
-  createList, 
-  deleteList, 
-  deleteTodo
+  createList
 } from "../../store/actionCreators/dataActionsCreator"
 import { 
-  setActiveTaskId,
   toggleCreatingList, 
   toggleCreatingTodo, 
   toggleDeletingList, 
-  toggleRenamingList, 
-  toggleShowingAllTasks
+  toggleRenamingList
 } from "../../store/actionCreators/todoListUIActionsCreator"
+import { 
+  confirmDeletingList,
+  confirmDeletingTodo
+} from "../../store/actionCreators/thunks"
 import { toggleIsLogouting } from "../../store/actionCreators/userPanelUIActionsCreator"
 import { toggleTodoDeletingConfirmation } from "../../store/actionCreators/todoPanelUIActionsCreator"
 
@@ -83,8 +83,7 @@ export default function useModalData() {
 
   if (isDeletingList) {
     onAction = () => {
-      dispatch(toggleShowingAllTasks())
-      dispatch(deleteList({ listId: activeListId }))
+      dispatch(confirmDeletingList({ listId: activeListId }))
       onClose()
     }
     action = DELETE_LIST
@@ -109,11 +108,10 @@ export default function useModalData() {
 
   if (isDeletingTodo) {
     onAction = () => {
-      dispatch(deleteTodo({ 
+      dispatch(confirmDeletingTodo({ 
         listId: activeTask.listId,
         todoId: activeTaskId
       }))
-      dispatch(setActiveTaskId({ id: null }))
       onClose()
     }
     action = DELETE_TASK

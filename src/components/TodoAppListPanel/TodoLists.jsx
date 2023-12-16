@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useContext } from 'react'
 import ListItem from '../../ui/ListItem/ListItem'
 import AppContext from '../../context/context'
-import { setActiveListId } from '../../store/actionCreators/todoListUIActionsCreator'
+import { setAndShowActiveList } from '../../store/actionCreators/thunks'
 
 export default function TodoLists() {
   const context = useContext(AppContext)
@@ -10,7 +10,7 @@ export default function TodoLists() {
   const activeListId = useSelector(store => store.todoListUI.activeListId)
   
   const dispatch = useDispatch()
-  const setActiveList = (id) => dispatch(setActiveListId({ listId: id }))
+  const setActiveList = (id) => dispatch(setAndShowActiveList({ listId: id }))
 
   return (
     <>

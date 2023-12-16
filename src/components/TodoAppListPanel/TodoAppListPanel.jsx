@@ -1,10 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { 
-  toggleCreatingList,
-  toggleShowingAllTasks, 
-  toggleShowingImportant 
-} from '../../store/actionCreators/todoListUIActionsCreator'
 import { useContext } from 'react'
+import { toggleCreatingList } from '../../store/actionCreators/todoListUIActionsCreator'
+import { showAllTasks, showImportantTasks } from '../../store/actionCreators/thunks'
 import AppContext from '../../context/context'
 import Container from '../../ui/Containers/Container'
 import UserName from '../UserName/UserName'
@@ -35,13 +32,13 @@ export default function TodoAppListPanel() {
             <ListItem 
               key={IMPORTANT} $listType={IMPORTANT} 
               $mode={context.mode} $active={isShowingImportant}
-              onClick={() => dispatch(toggleShowingImportant())}
+              onClick={() => dispatch(showImportantTasks())}
             />
 
             <ListItem
               key={ALL_TASKS} $listType={ALL_TASKS} 
               $mode={context.mode} $active={isShowingAllTasks}
-              onClick={() => dispatch(toggleShowingAllTasks())}
+              onClick={() => dispatch(showAllTasks())}
             />
 
             <Container as="span" $divider $mode={context.mode} />

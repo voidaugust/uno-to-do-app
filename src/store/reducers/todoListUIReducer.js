@@ -16,34 +16,43 @@ export default function todoListUIReducer(
   state = todoListUIInitialState, { type, payload }
 ) {
   switch (type) {
-    case TOGGLE_CREATING_LIST: return { ...state, creatingList: !state.creatingList }
+    case TOGGLE_CREATING_LIST: return { 
+      ...state, 
+      creatingList: !state.creatingList 
+    }
     
-    case TOGGLE_RENAMING_LIST: return { ...state, renamingList: !state.renamingList }
+    case TOGGLE_RENAMING_LIST: return { 
+      ...state, 
+      renamingList: !state.renamingList 
+    }
     
-    case TOGGLE_DELETING_LIST: return { ...state, deletingList: !state.deletingList }
+    case TOGGLE_DELETING_LIST: return { 
+      ...state, 
+      deletingList: !state.deletingList 
+    }
     
-    case TOGGLE_CREATING_TODO: return { ...state, creatingTodo: !state.creatingTodo }
+    case TOGGLE_CREATING_TODO: return { 
+      ...state, 
+      creatingTodo: !state.creatingTodo 
+    }
     
-    case TOGGLE_SHOWING_COMPLETED: return { ...state, showingCompleted: !state.showingCompleted }
+    case TOGGLE_SHOWING_COMPLETED: return { 
+      ...state, 
+      showingCompleted: payload.isShowingCompleted 
+    }
 
     case TOGGLE_SHOWING_ALL_TASKS: return { 
       ...state, 
-      showingAllTasks: !state.showingAllTasks,
-      showingImportant: false,
-      activeListId: null
+      showingAllTasks: payload.isShowingAllTasks
     }
     
     case TOGGLE_SHOWING_IMPORTANT: return { 
       ...state, 
-      showingImportant: !state.showingImportant,
-      showingAllTasks: false,
-      activeListId: null
+      showingImportant: payload.isShowingImportant
     }
     
     case SET_ACTIVE_LIST_ID: return { 
       ...state, 
-      showingAllTasks: false,
-      showingImportant: false,
       activeListId: payload.listId 
     }
 
