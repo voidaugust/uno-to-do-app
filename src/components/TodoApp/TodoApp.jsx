@@ -1,14 +1,15 @@
 import { useContext } from 'react'
 import AppContext from '../../context/context'
+import { useSelector } from 'react-redux'
 import MainWrapper from '../../ui/MainWrapper/MainWrapper'
 import Container from '../../ui/Containers/Container'
 import TodoAppListPanel from '../TodoAppListPanel/TodoAppListPanel'
 import TaskList from '../TaskList/TaskList'
-import Modal from '../Modal/Modal'
 import UserSettingsModal from '../Modal/UserSettingsModal'
 import styled from 'styled-components'
 import TodoPanel from '../TodoPanel/TodoPanel'
-import { useSelector } from 'react-redux'
+import ListsAndTodosActionsModal from '../Modal/ListsAndTodosActionsModal'
+import DueDateSettingModal from '../Modal/DueDateSettingModal'
 
 export default function TodoApp() {
   const context = useContext(AppContext)
@@ -17,7 +18,8 @@ export default function TodoApp() {
 
   return (
     <>
-      <Modal />
+      <DueDateSettingModal />
+      <ListsAndTodosActionsModal />
       <UserSettingsModal />
       <MainWrapper $mode={context.mode}>
         <Container 

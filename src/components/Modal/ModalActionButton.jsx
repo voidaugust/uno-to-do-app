@@ -1,7 +1,7 @@
 import Button from "../../ui/Button/Button"
 import { 
   CREATE, RENAME, DELETE_LIST, 
-  ADD, DELETE_TASK,
+  ADD, DELETE_TASK, SAVE_SETTINGS,
   IS_LOGOUTING
 } from "./modalScenarios"
 
@@ -18,7 +18,7 @@ export default function ModalActionButton ({ onAction, action }) {
     )
   }
 
-  if (action === RENAME) {
+  if (action === RENAME || action === SAVE_SETTINGS) {
     return (
       <Button
         $filled

@@ -1,5 +1,4 @@
 import { useContext } from 'react'
-import { createPortal } from 'react-dom'
 import AppContext from '../../context/context'
 import { 
   ModalBackground, 
@@ -7,52 +6,41 @@ import {
   ModalContent, 
   ModalButtons 
 } from '../../ui/ModalElements/ModalElements'
-import Text from '../../ui/Text/Text'
 import Heading from '../../ui/Text/Heading'
-import Input from '../../ui/Input/Input'
 import Button from '../../ui/Button/Button'
 import ModalActionButton from './ModalActionButton'
-import useModalData from './useModalData'
 
-export default function Modal() {
+export default function Modal({ 
+  modalHeading, onModalAction, modalAction, 
+  onModalClose, children
+}) {
   const context = useContext(AppContext)
-
-  const modal = useModalData()
 
   const backgroundOnClose = (e) => {
     e.preventDefault()
-    if (e.target === e.currentTarget) modal.onClose()
+    if (e.target === e.currentTarget) onModalClose()
   }
 
-  if (!modal.isActionAvailable) return undefined
-  return createPortal(
+  return (
     <ModalBackground onClick={(e) => backgroundOnClose(e)}>
       <ModalContainer $mode={context.mode}>
 
         <ModalContent>
           <Heading $type="h4" $mode={context.mode}>
-            {modal.heading}
+            {modalHeading}
           </Heading>
-
-          {modal.textType === "editable"
-            ? <Input
-                ref={modal.inputRef} $mode={context.mode}
-                placeholder={modal.description}
-                autoFocus
-              />
-            : <Text $mode={context.mode} $secondary>
-                {modal.description}
-              </Text>
-          }
+            {children}
         </ModalContent>
 
         <ModalButtons>
-          <Button onClick={modal.onClose}>Cancel</Button>
-          <ModalActionButton onAction={modal.onAction} action={modal.action} />
+          <Button onClick={onModalClose}>Cancel</Button>
+          { modalAction 
+            ? <ModalActionButton onAction={onModalAction} action={modalAction} /> 
+            : undefined
+          }
         </ModalButtons>
 
       </ModalContainer>
     </ModalBackground>
-    , document.getElementById('modal')
   )
 }
