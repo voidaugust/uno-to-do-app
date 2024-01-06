@@ -1,15 +1,9 @@
-import { useSelector } from "react-redux"
 import styled, { css } from "styled-components"
 import { marginsAndPaddings } from "../marginsAndPaddings"
 
 export default function Text(props) {
-  const context = useSelector(state => state.userPanelUI)
-  const preparedProps = {
-    ...props, 
-    $defaultColor: `${context.mode === "light" ? "black" : "white"}`
-  }
-
-  return <StyledText {...preparedProps} />
+  const $defaultColor = props.$mode === "light" ? "black" : "white"
+  return <StyledText $defaultColor={$defaultColor} {...props} />
 }
 
 const StyledText = styled.p`

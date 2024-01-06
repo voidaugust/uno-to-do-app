@@ -51,17 +51,6 @@ export default function UserSettingsModal() {
     }))
   }
 
-  // const OptionButton = (props) => {
-  //   <SettingsButton
-  //     $mode={context.mode}
-  //     // onClick={props.onClick}
-  //     $active={props.$active}
-  //     {...props}
-  //   >
-  //      {props.children}
-  //    </SettingsButton>
-  // }
-
   if (!isShowingUserPanel) return undefined
 
   return createPortal(
@@ -177,7 +166,7 @@ const SettingsHeader = ({ $mode, onLogout }) => {
       <UserPic $x2 $marginInline="0" />
       
       <Text 
-        $marginBlock="12px 0" $size="22px" 
+        $marginBlock="12px 0" $size="22px" $mode={$mode}
         $height="28px" $weight="400"
       >
         Pavel Augustine

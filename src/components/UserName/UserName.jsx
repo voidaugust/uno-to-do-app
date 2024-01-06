@@ -20,7 +20,7 @@ export default function UserName() {
       $cursor="pointer"
       onClick={() => dispatch(toggleShowingUserPanel())}
     >
-      <UserPic />
+      <UserPic $textColor={context.mode === "light" ? "white" : "black"} />
 
       <Container
         $mode={context.mode} 
@@ -28,7 +28,7 @@ export default function UserName() {
         $alignItems="flex-start" 
         $cursor="pointer"
       >
-        <Text $size="14px" $height="20px">
+        <Text $size="14px" $height="20px" $mode={context.mode}>
           Pavel Augustine
         </Text>
         <Text 
@@ -37,8 +37,8 @@ export default function UserName() {
         >
           augustine-test-email@gmail.com
         </Text>
-      </Container>
 
+      </Container>
     </Container>
   )
 }

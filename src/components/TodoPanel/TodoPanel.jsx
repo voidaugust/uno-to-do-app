@@ -5,6 +5,7 @@ import Container from '../../ui/Containers/Container'
 import styled from 'styled-components'
 import TodoPanelFooter from './TodoPanelFooter'
 import TodoPanelHeader from './TodoPanelHeader'
+import TodoDueDateBlock from './TodoDueDateBlock'
 
 export default function TodoPanel() {
   const context = useContext(AppContext)
@@ -21,9 +22,9 @@ export default function TodoPanel() {
 
         <Container as="span" $divider $mode={context.mode} />
 
-        <Container $direction="row" $justifyContent="space-between">
-          Deadline here
-        </Container>
+        {/* <Container $direction="row" $justifyContent="space-between"> */}
+        <TodoDueDateBlock activeTask={activeTask} />
+        {/* </Container> */}
 
         <Container as="span" $divider $mode={context.mode} />
 

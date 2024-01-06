@@ -31,7 +31,7 @@ export default function ListItem(props) {
 
       <Text 
         $paddingBlock="4px" $paddingInline="48px 8px"
-        $align="left"
+        $align="left" $mode={props.$mode}
       > 
         {listTitle}
       </Text>
