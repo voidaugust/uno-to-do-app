@@ -50,87 +50,93 @@ export default function UserSettingsModal() {
       modalAction={SAVE_SETTINGS}
       onModalClose={onClose}
     >
-      <SettingsHeader $mode={context.mode} onLogout={onLogout} />
+      <Container>
+        <SettingsHeader $mode={context.mode} onLogout={onLogout} />
 
-      <Container $alignItems="flex-start">
-        <SettingHeading $mode={context.mode}>
-          General
-        </SettingHeading>
-        
-        <Container $gap="20px">
+        <Container $alignItems="flex-start">
+          <SettingHeading $mode={context.mode}>
+            General
+          </SettingHeading>
+          
+          <Container $gap="20px">
 
-          <SettingBlock title="Color palette" $mode={context.mode}>
-            <SettingsButton
-              $mode={context.mode}
-              onClick={() => setSelectedPalette(PURPLE)}
-              $active={selectedPalette === PURPLE}
-            >
-              Purple
-            </SettingsButton>
-            <SettingsButton
-              $mode={context.mode} 
-              onClick={() => setSelectedPalette(BLUE)}
-              $active={selectedPalette === BLUE}
-            >
-              Blue
-            </SettingsButton>
-          </SettingBlock>
+            <SettingBlock title="Color palette" $mode={context.mode}>
+              <SettingsButton
+                $mode={context.mode}
+                onClick={() => setSelectedPalette(PURPLE)}
+                $active={selectedPalette === PURPLE}
+              >
+                Purple
+              </SettingsButton>
+              <SettingsButton
+                $mode={context.mode} 
+                onClick={() => setSelectedPalette(BLUE)}
+                $active={selectedPalette === BLUE}
+              >
+                Blue
+              </SettingsButton>
+            </SettingBlock>
 
-          <SettingBlock title="Language" $mode={context.mode}>
-            <SettingsButton 
-              $mode={context.mode}
-              onClick={() => setSelectedLang(ENGLISH)}
-              $active={selectedLang === ENGLISH}
-            >
-              English
-            </SettingsButton>
-            <SettingsButton 
-              $mode={context.mode}
-              onClick={() => setSelectedLang(RUSSIAN)}
-              $active={selectedLang === RUSSIAN}
-            >
-              Russian
-            </SettingsButton>
-          </SettingBlock>
+            <SettingBlock title="Language" $mode={context.mode}>
+              <SettingsButton 
+                $mode={context.mode}
+                onClick={() => setSelectedLang(ENGLISH)}
+                $active={selectedLang === ENGLISH}
+              >
+                English
+              </SettingsButton>
+              <SettingsButton 
+                $mode={context.mode}
+                onClick={() => setSelectedLang(RUSSIAN)}
+                $active={selectedLang === RUSSIAN}
+              >
+                Russian
+              </SettingsButton>
+            </SettingBlock>
 
-          <SettingBlock title="Mode" $mode={context.mode}>
-            <SettingsButton 
-              $mode={context.mode}
-              onClick={() => setSelectedMode(LIGHT)}
-              $active={selectedMode === LIGHT}
-            >
-              Light
-            </SettingsButton>
-            <SettingsButton 
-              $mode={context.mode}
-              onClick={() => setSelectedMode(DARK)}
-              $active={selectedMode === DARK}
-            >
-              Dark
-            </SettingsButton>
-          </SettingBlock>
+            <SettingBlock title="Mode" $mode={context.mode}>
+              <SettingsButton 
+                $mode={context.mode}
+                onClick={() => setSelectedMode(LIGHT)}
+                $active={selectedMode === LIGHT}
+              >
+                Light
+              </SettingsButton>
+              <SettingsButton 
+                $mode={context.mode}
+                onClick={() => setSelectedMode(DARK)}
+                $active={selectedMode === DARK}
+              >
+                Dark
+              </SettingsButton>
+            </SettingBlock>
+          </Container>
+
+          <Divider />
+
+          <SettingHeading $mode={context.mode}>
+            About
+          </SettingHeading>
+
+          <Container $direction="row" $justifyContent="flex-start">
+            <Text $marginInline="0 24px" $mode={context.mode}>
+              Version
+            </Text>
+            <Text $purple $mode={context.mode}>
+              1.0
+            </Text>
+          </Container>
+
         </Container>
-
-        <Container as="span" $divider $mode={context.mode} />
-
-        <SettingHeading $mode={context.mode}>
-          About
-        </SettingHeading>
-
-        <Container $direction="row" $justifyContent="flex-start">
-          <Text $marginInline="0 24px" $mode={context.mode}>
-            Version
-          </Text>
-          <Text $purple $mode={context.mode}>
-            1.0
-          </Text>
-        </Container>
-
       </Container>
-      
     </Modal>
     , document.getElementById('modal')
   )
+}
+
+const Divider = () => {
+  const context = useContext(AppContext)
+  return <Container as="span" $divider $mode={context.mode} />
 }
 
 const SettingsHeader = ({ $mode, onLogout }) => {
@@ -155,7 +161,7 @@ const SettingsHeader = ({ $mode, onLogout }) => {
         Sign Out
       </Button>
       
-      <Container as="span" $divider $mode={$mode} />
+      <Divider />
     </Container>
   )
 }

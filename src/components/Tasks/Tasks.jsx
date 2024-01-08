@@ -50,7 +50,7 @@ export default function Tasks() {
               isCompleted={task.isCompleted}
               isImportant={task.isImportant}
               createdDate={task.createdDate}
-              dueDate={task.dueDate}
+              dueDate={task.dueDate} note={task.note}
               setActive={setActiveTask}
             />
           ))

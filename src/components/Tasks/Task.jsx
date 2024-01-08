@@ -12,6 +12,7 @@ import {
   importantIconNotFilledOnDark
 } from "../../ui/Icons/iconTypes"
 import Text from "../../ui/Text/Text"
+import taskDueDate from "./taskDueDate"
 
 export default function Task(props) {
   const context = useContext(AppContext)
@@ -39,6 +40,22 @@ export default function Task(props) {
     }))
   }
 
+  // let dueDate
+  // const today = new Date()
+  // let tomorrow = new Date()
+  // tomorrow.setUTCDate(today.getUTCDate() + 1)
+
+  // const dateOptions = {
+  //   weekday: "short",
+  //   month: "short",
+  //   day: "numeric"
+  // }
+  // const converted = (date) => date.toLocaleString("en-GB", dateOptions)
+
+  // if (props.dueDate === null) dueDate = null
+  // else if (converted(props.dueDate) === converted(today)) dueDate = "Today"
+  // else if (converted(props.dueDate) === converted(tomorrow)) dueDate = "Tomorrow"
+  // else dueDate = converted(props.dueDate)
 
   return (
     <TaskContainer 
@@ -61,6 +78,26 @@ export default function Task(props) {
           <Text $mode={context.mode}>
             {props.title}
           </Text>
+
+          <Container $direction="row" $justifyContent="flex-start">
+            {
+              props.dueDate
+                ? <SecondaryText $mode={context.mode}>
+                  {/* {dueDate} */}
+                  {taskDueDate(props.dueDate)}
+                </SecondaryText>
+                : undefined
+            }
+
+            {
+              props.note
+                ? <SecondaryText $mode={context.mode}>
+                  - {props.note}
+                </SecondaryText>
+                : undefined
+            }
+          </Container>
+
         </TaskInfoContainer>
       </Container>
 
@@ -72,5 +109,18 @@ export default function Task(props) {
       </SquareIconButton>
 
     </TaskContainer>
+  )
+}
+
+const SecondaryText = ({ children }) => {
+  const context = useContext(AppContext)
+  return (
+    <Text 
+      $mode={context.mode}
+      $size="14px"
+      $secondary
+    >
+      {children}
+    </Text>
   )
 }

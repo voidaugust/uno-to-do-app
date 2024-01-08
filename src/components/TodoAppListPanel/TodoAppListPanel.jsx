@@ -41,7 +41,7 @@ export default function TodoAppListPanel() {
               onClick={() => dispatch(showAllTasks())}
             />
 
-            <Container as="span" $divider $mode={context.mode} />
+            <Divider />
             
             <TodoLists />
           </Container>
@@ -61,6 +61,11 @@ export default function TodoAppListPanel() {
       </ListPanelNav>
     </ListPanelContainer>
   )
+}
+
+const Divider = () => {
+  const context = useContext(AppContext)
+  return <Container as="span" $divider $mode={context.mode} />
 }
 
 const ListPanelContainer = (props) => {

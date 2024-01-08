@@ -24,4 +24,11 @@ const StyledInput = styled.input`
   ${props => props.$search && css`
     background: ${props => props.$mode === "light" ? "var(--light-grey)" : "var(--dark-grey)"};
   `};
+
+  ${props => props.$note && css`
+    padding-inline: 0;
+    border-radius: 0;
+    border: 0;
+    background: transparent;
+  `};
 `

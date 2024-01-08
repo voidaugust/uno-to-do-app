@@ -32,6 +32,12 @@ export default function TodoDueDateBlock({ activeTask }) {
       ? taskDueDateOnLightIcon
       : taskDueDateOnDarkIcon
 
+  const dateOptions = {
+    weekday: "short",
+    month: "short",
+    day: "numeric"
+  }
+  
   return (
     <Container 
       $direction="row" 
@@ -53,12 +59,16 @@ export default function TodoDueDateBlock({ activeTask }) {
 
       <Text 
         $mode={context.mode} $marginInline="16px 0" 
-        $color={context.mode === "light" ? "var(--over-light-grey)" : "var(--over-dark-grey)"}
+        $color={
+          isDueDate 
+            ? null
+            : context.mode === "light" ? "var(--over-light-grey)" : "var(--over-dark-grey)"
+        }
         onClick={onDueDateSetup}
       >
         {
           isDueDate
-            ? `Due ${dueDate}`
+            ? `Due ${dueDate.toLocaleString("en-GB", dateOptions)}`
             : "Add Due Date"
         }
       </Text>

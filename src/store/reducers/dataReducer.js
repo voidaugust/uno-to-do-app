@@ -94,7 +94,6 @@ export default function dataReducer(state = dataInitialState, {type, payload}) {
           return todo
         })
       }
-
       return list
     })
 

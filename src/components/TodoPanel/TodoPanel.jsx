@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import TodoPanelFooter from './TodoPanelFooter'
 import TodoPanelHeader from './TodoPanelHeader'
 import TodoDueDateBlock from './TodoDueDateBlock'
+import TodoNoteBlock from './TodoNoteBlock'
 
 export default function TodoPanel() {
   const context = useContext(AppContext)
@@ -19,25 +20,20 @@ export default function TodoPanel() {
     <TodoPanelContainer $mode={context.mode}>
       <Container>
         <TodoPanelHeader activeTask={activeTask} />
-
-        <Container as="span" $divider $mode={context.mode} />
-
-        {/* <Container $direction="row" $justifyContent="space-between"> */}
+        <Divider />
         <TodoDueDateBlock activeTask={activeTask} />
-        {/* </Container> */}
-
-        <Container as="span" $divider $mode={context.mode} />
-
-        <Container $direction="row" $justifyContent="space-between">
-          Note here
-        </Container>
-
-        <Container as="span" $divider $mode={context.mode} />
+        <Divider />
+        <TodoNoteBlock activeTask={activeTask} />
+        <Divider />
       </Container>
-
       <TodoPanelFooter activeTask={activeTask} />
     </TodoPanelContainer>
   )
+}
+
+const Divider = () => {
+  const context = useContext(AppContext)
+  return <Container as="span" $divider $mode={context.mode} />
 }
 
 const TodoPanelContainer = (props) => {
