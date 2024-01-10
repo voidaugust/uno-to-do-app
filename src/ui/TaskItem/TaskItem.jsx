@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 import Container from "../Containers/Container"
 import { modeBackground } from "../modeBackground"
 import { defaultAnimation } from "../defaultAnimation"
@@ -15,14 +15,45 @@ export const TaskContainer = styled.li`
   list-style-type: none;
   border-radius: 10px;
   ${modeBackground}
+
+  ${props => props.$activeTask && css`
+    background: ${props => props.$mode === "light" ? "var(--light-primary-purple-inverse)" : "var(--light-primary-purple-variant)"};
+  `};
 `
 
-export const Checkbox = (props) => <StyledCheckbox {...props} />
+export const Checkbox = (props) => (
+  <StyledCheckbox readOnly={true} {...props} />
+)
+
+export const CheckboxWithCustomBg = (props) => (
+  <>
+    <StyledCheckbox readOnly={true} $customBg {...props} />
+    <StyledFakeCheckbox />
+  </>
+)
 
 const StyledCheckbox = styled.input.attrs({ type: "checkbox" })`
+  position: absolute;
   transform: scale(1.5);
+  opacity: 1;
+  cursor: pointer;
   accent-color: ${props => props.$mode === "light" ? "var(--primary-purple)" : "var(--on-dark-primary-purple)"};
   ${defaultAnimation}
+
+  ${props => props.$customBg && css`
+    opacity: ${props => props.$isCompleted ? "1" : "0"};
+  `};
+`
+
+const StyledFakeCheckbox = styled.label`
+  width: 13px;
+  height: 13px;
+  transform: scale(1.5);
+  border-width: 1px;
+  border-style: solid;
+  border-image: initial;
+  border-radius: 2px;
+  cursor: pointer;
 `
 
 export const TaskInfoContainer = (props) => <StyledTaskInfoContainer {...props} />

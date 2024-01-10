@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 import Button from "./Button"
 
 export default function SquareIconButton(props) {
@@ -13,4 +13,9 @@ const StyledSquareIconButton = styled(Button)`
       ? "var(--primary-purple)" 
       : "var(--on-dark-primary-purple)"
   };
+
+  ${props => props.$inline && css`
+    position: absolute;
+    left: calc(100% - ${props => props.$size || "40px"});
+  `};
 `

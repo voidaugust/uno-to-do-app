@@ -2,6 +2,7 @@ import todoPanelUIInitialState from "../initialStates/todoPanelUIInitialState"
 import {
   TOGGLE_TODO_TITLE_CHANGING,
   TOGGLE_DUE_DATE_CHANGING,
+  TOGGLE_TODO_NOTE_CHANGING,
   TOGGLE_TODO_DELETING_CONFIRMATION
 } from "../actions/todoPanelUIActions"
 
@@ -13,6 +14,10 @@ export default function todoPanelUIReducer(state = todoPanelUIInitialState, { ty
 
     case TOGGLE_DUE_DATE_CHANGING: return { 
       ...state, isDueDateChanging: !state.isDueDateChanging
+    }
+
+    case TOGGLE_TODO_NOTE_CHANGING: return { 
+      ...state, isNoteChanging: !state.isNoteChanging
     }
 
     case TOGGLE_TODO_DELETING_CONFIRMATION: return { 

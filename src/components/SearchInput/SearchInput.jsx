@@ -1,23 +1,26 @@
-import { useCallback, useContext, useEffect, useRef } from "react"
+import { useContext, useState } from "react"
 import Container from "../../ui/Containers/Container"
 import Input from "../../ui/Input/Input"
 import Icon from "../../ui/Icons/Icon"
 import { searchIcon } from "../../ui/Icons/iconTypes"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import AppContext from "../../context/context"
 import { setSearchQuery } from "../../store/actionCreators/todoListUIActionsCreator"
+import { cancelIconOnLight, cancelIconOnDark } from "../../ui/Icons/iconTypes"
+import SquareIconButton from "../../ui/Button/SquareIconButton"
 
 export default function SearchInput() {
   const context = useContext(AppContext)
+  const searchQuery = useSelector(store => store.todoListUI.searchQuery)
   const dispatch = useDispatch()
-  const searchInputRef = useRef(null)
+  const [isSearchFocused, setSearchFocus] = useState(false) 
 
-  const focusHandler = useCallback(() => console.log("focused"), [])
-  useEffect(() => {
-    const ref = searchInputRef.current
-    ref.addEventListener("focus", focusHandler)
-    return () => ref.removeEventListener("focus", focusHandler)
-  }, [focusHandler])
+  const cancelSearch = () => {
+    dispatch(setSearchQuery({ searchQuery: "" }))
+    setSearchFocus(false)
+  }
+
+  const cancelIcon = context.mode === "light" ? cancelIconOnLight : cancelIconOnDark
 
   return (
     <Container 
@@ -26,14 +29,28 @@ export default function SearchInput() {
       $marginBlock="0 20px"
     >
       <Icon $src={searchIcon} $left={"16px"} />
+
       <Input 
-        ref={searchInputRef} $mode={context.mode}
-        placeholder="Search" $search
-        $paddingInline="calc(16px + 24px + 8px) 16px"
+        $mode={context.mode}
+        placeholder="Search" value={searchQuery}
+        $search $activeSearch={isSearchFocused}
         onChange={(e) => {
           dispatch(setSearchQuery({ searchQuery: e.target.value }))
         }}
+        onFocus={() => setSearchFocus(true)}
+        onBlur={cancelSearch}
       />
+      
+      {
+        isSearchFocused
+          ? <SquareIconButton 
+              $mode={context.mode} $inline
+              onClick={cancelSearch}
+            >
+              <Icon $src={cancelIcon} $left="calc(50% - 12px)" />
+            </SquareIconButton>
+          : undefined
+      }
     </Container>
   )
 }

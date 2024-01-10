@@ -41,7 +41,7 @@ export default function dataReducer(state = dataInitialState, {type, payload}) {
             id: crypto.randomUUID(),
             listId: payload.listId,
             title: payload.todoTitle,
-            note: null,
+            note: '',
             isCompleted: false,
             isImportant: false,
             createdDate: new Date(),

@@ -21,7 +21,7 @@ const StyledContainer = styled.div`
   height: ${props => props.$height || "auto"};
   background-color: ${props => props.$bgColor || "transparent"};
   border-radius: ${props => props.$radius || 0};
-  cursor: ${props => props.$cursor || "auto"};
+  cursor: ${props => props.$cursor || "inherit"};
   
   ${defaultAnimation}
   ${modeBackground}

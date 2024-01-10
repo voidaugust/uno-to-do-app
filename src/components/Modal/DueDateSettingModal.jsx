@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useMemo } from 'react'
 import AppContext from '../../context/context'
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleDueDateChanging } from '../../store/actionCreators/todoPanelUIActionsCreator'
@@ -18,8 +18,10 @@ import { changeDueDate } from '../../store/actionCreators/dataActionsCreator'
 
 export default function DueDateSettingModal() {
   const isDueDateChanging = useSelector(store => store.todoPanelUI.isDueDateChanging)
-  const activeListId = useSelector(store => store.todoListUI.activeListId)
+  const taskLists = useSelector(store => store.data)
+  const tasks = useMemo(() => taskLists.map(list => list.todos).flat(Infinity), [taskLists])
   const activeTaskId = useSelector(store => store.todoListUI.activeTaskId)
+  const activeTask = tasks.find(task => task.id === activeTaskId)
 
   const dispatch = useDispatch()
 
@@ -31,7 +33,7 @@ export default function DueDateSettingModal() {
 
   const onClose = () => dispatch(toggleDueDateChanging())
   const setDueDate = (date) => dispatch(changeDueDate({
-    listId: activeListId,
+    listId: activeTask.listId,
     todoId: activeTaskId,
     dueDate: date
   }))

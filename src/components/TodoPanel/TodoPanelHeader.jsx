@@ -1,8 +1,7 @@
 import { useContext } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import AppContext from "../../context/context"
 import Container from "../../ui/Containers/Container"
-import Text from "../../ui/Text/Text"
 import Icon from "../../ui/Icons/Icon"
 import { Checkbox } from "../../ui/TaskItem/TaskItem"
 import SquareIconButton from "../../ui/Button/SquareIconButton"
@@ -11,10 +10,13 @@ import {
   importantIconNotFilledOnLight,
   importantIconNotFilledOnDark
 } from "../../ui/Icons/iconTypes"
-import { setCompleted, setImportant } from "../../store/actionCreators/dataActionsCreator"
+import { changeTodoTitle, setCompleted, setImportant } from "../../store/actionCreators/dataActionsCreator"
+import { toggleTodoTitleChanging } from "../../store/actionCreators/todoPanelUIActionsCreator"
+import Input from "../../ui/Input/Input"
 
 export default function TodoPanelHeader({ activeTask }) {
   const context = useContext(AppContext)
+  const activeListId = useSelector(store => store.todoListUI.activeListId)
   const dispatch = useDispatch()
 
   const onSetCompleted = () => dispatch(setCompleted({ 
@@ -24,6 +26,11 @@ export default function TodoPanelHeader({ activeTask }) {
   const onSetImportant = () => dispatch(setImportant({ 
     listId: activeTask.listId,
     todoId: activeTask.id
+  }))
+  const changeTitle = (title) => dispatch(changeTodoTitle({
+    listId: activeListId,
+    todoId: activeTask.id,
+    todoTitle: title 
   }))
 
   const importantIconNotFilled = 
@@ -40,14 +47,17 @@ export default function TodoPanelHeader({ activeTask }) {
       >
         <Checkbox 
           $mode={context.mode}
-          readOnly={true}
           checked={activeTask.isCompleted}
         />
       </SquareIconButton>
-      
-      <Text $weight="400" $mode={context.mode}>
-        {activeTask.title}
-      </Text>
+
+      <Input 
+        $mode={context.mode} $field $center $size="22px"
+        value={activeTask.title}
+        onChange={(e) => changeTitle(e.target.value)}
+        onFocus={() => dispatch(toggleTodoTitleChanging())}
+        onBlur={() => dispatch(toggleTodoTitleChanging())}
+      />
 
       <SquareIconButton 
         $mode={context.mode}

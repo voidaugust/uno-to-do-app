@@ -1,8 +1,8 @@
 import { useContext } from "react"
 import AppContext from "../../context/context"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { setCompleted, setImportant } from "../../store/actionCreators/dataActionsCreator"
-import { Checkbox, TaskContainer, TaskInfoContainer } from "../../ui/TaskItem/TaskItem"
+import { CheckboxWithCustomBg, TaskContainer, TaskInfoContainer } from "../../ui/TaskItem/TaskItem"
 import Container from "../../ui/Containers/Container"
 import SquareIconButton from "../../ui/Button/SquareIconButton"
 import Icon from "../../ui/Icons/Icon"
@@ -16,6 +16,7 @@ import taskDueDate from "./taskDueDate"
 
 export default function Task(props) {
   const context = useContext(AppContext)
+  const activeTaskId = useSelector(store => store.todoListUI.activeTaskId)
   const dispatch = useDispatch()
   
   const importantIconNotFilled = 
@@ -40,26 +41,9 @@ export default function Task(props) {
     }))
   }
 
-  // let dueDate
-  // const today = new Date()
-  // let tomorrow = new Date()
-  // tomorrow.setUTCDate(today.getUTCDate() + 1)
-
-  // const dateOptions = {
-  //   weekday: "short",
-  //   month: "short",
-  //   day: "numeric"
-  // }
-  // const converted = (date) => date.toLocaleString("en-GB", dateOptions)
-
-  // if (props.dueDate === null) dueDate = null
-  // else if (converted(props.dueDate) === converted(today)) dueDate = "Today"
-  // else if (converted(props.dueDate) === converted(tomorrow)) dueDate = "Tomorrow"
-  // else dueDate = converted(props.dueDate)
-
   return (
     <TaskContainer 
-      $modeBg $mode={context.mode} 
+      $modeBg $mode={context.mode} $activeTask={activeTaskId === props.id}
       id={props.id} onClick={() => props.setActive(props.id)}
     >
       <Container $direction="row" style={{ cursor: "pointer" }}>
@@ -67,10 +51,10 @@ export default function Task(props) {
           $mode={context.mode}
           onClick={(e) => onSetCompleted(e)}
         >
-          <Checkbox 
+          <CheckboxWithCustomBg 
             $mode={context.mode}
-            readOnly={true}
             checked={props.isCompleted}
+            $isCompleted={props.isCompleted}
           />
         </SquareIconButton>
 
@@ -83,8 +67,15 @@ export default function Task(props) {
             {
               props.dueDate
                 ? <SecondaryText $mode={context.mode}>
-                  {/* {dueDate} */}
                   {taskDueDate(props.dueDate)}
+                </SecondaryText>
+                : undefined
+            }
+
+            {
+              props.dueDate && props.note
+                ? <SecondaryText $mode={context.mode}>
+                  &nbsp;-&nbsp; 
                 </SecondaryText>
                 : undefined
             }
@@ -92,7 +83,7 @@ export default function Task(props) {
             {
               props.note
                 ? <SecondaryText $mode={context.mode}>
-                  - {props.note}
+                  {props.note}
                 </SecondaryText>
                 : undefined
             }
