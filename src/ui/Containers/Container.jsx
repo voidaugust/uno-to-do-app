@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components"
 import { marginsAndPaddings } from "../marginsAndPaddings"
 import { modeBackground } from "../modeBackground"
-import { defaultAnimation } from "../defaultAnimation"
+// import { defaultAnimation } from "../defaultAnimation"
 
 export default function Container(props) {
   return <StyledContainer {...props} />
@@ -23,7 +23,7 @@ const StyledContainer = styled.div`
   border-radius: ${props => props.$radius || 0};
   cursor: ${props => props.$cursor || "inherit"};
   
-  ${defaultAnimation}
+  ${'' /* ${defaultAnimation} */}
   ${modeBackground}
 
   ${props => props.$mobileHide && css`

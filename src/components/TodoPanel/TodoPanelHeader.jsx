@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import AppContext from "../../context/context"
 import Container from "../../ui/Containers/Container"
 import Icon from "../../ui/Icons/Icon"
@@ -16,7 +16,6 @@ import Input from "../../ui/Input/Input"
 
 export default function TodoPanelHeader({ activeTask }) {
   const context = useContext(AppContext)
-  const activeListId = useSelector(store => store.todoListUI.activeListId)
   const dispatch = useDispatch()
 
   const onSetCompleted = () => dispatch(setCompleted({ 
@@ -28,7 +27,7 @@ export default function TodoPanelHeader({ activeTask }) {
     todoId: activeTask.id
   }))
   const changeTitle = (title) => dispatch(changeTodoTitle({
-    listId: activeListId,
+    listId: activeTask.listId,
     todoId: activeTask.id,
     todoTitle: title 
   }))

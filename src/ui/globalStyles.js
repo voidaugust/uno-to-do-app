@@ -162,19 +162,6 @@ const GlobalStyle = createGlobalStyle`
   ::selection {
     text-shadow: none;
   }
-
-  ${'' /* @media (prefers-color-scheme: light) {
-    :root {
-      color: #213547;
-      background-color: #ffffff;
-    }
-    a:hover {
-      color: #747bff;
-    }
-    button {
-      background-color: #f9f9f9;
-    }
-  } */}
 `
 
 export default GlobalStyle

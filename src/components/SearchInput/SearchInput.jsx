@@ -33,7 +33,7 @@ export default function SearchInput() {
       <Input 
         $mode={context.mode}
         placeholder="Search" value={searchQuery}
-        $search $activeSearch={isSearchFocused}
+        $search $activeInput={isSearchFocused}
         onChange={(e) => {
           dispatch(setSearchQuery({ searchQuery: e.target.value }))
         }}

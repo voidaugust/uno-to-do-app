@@ -2,7 +2,7 @@ import Button from "../../ui/Button/Button"
 import { 
   CREATE, RENAME, DELETE_LIST, 
   ADD, DELETE_TASK, SAVE_SETTINGS,
-  IS_LOGOUTING
+  IS_LOGOUTING, SAVE_CUSTOM_DUE_DATE
 } from "./modalScenarios"
 
 export default function ModalActionButton ({ onAction, action }) {
@@ -18,7 +18,7 @@ export default function ModalActionButton ({ onAction, action }) {
     )
   }
 
-  if (action === RENAME || action === SAVE_SETTINGS) {
+  if (action === RENAME || action === SAVE_SETTINGS || action === SAVE_CUSTOM_DUE_DATE) {
     return (
       <Button
         $filled

@@ -9,7 +9,7 @@ import UserSettingsModal from '../Modal/UserSettingsModal'
 import styled from 'styled-components'
 import TodoPanel from '../TodoPanel/TodoPanel'
 import ListsAndTodosActionsModal from '../Modal/ListsAndTodosActionsModal'
-import DueDateSettingModal from '../Modal/DueDateSettingModal'
+import DueDateSettingModal from '../Modal/DueDateSettingModal/DueDateSettingModal'
 
 export default function TodoApp() {
   const context = useContext(AppContext)

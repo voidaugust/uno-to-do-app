@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { createPortal } from 'react-dom'
 import AppContext from '../../context/context'
 import Text from '../../ui/Text/Text'
@@ -9,6 +9,7 @@ import Modal from './Modal'
 export default function ListsAndTodosActionsModal() {
   const context = useContext(AppContext)
   const modal = useModalData()
+  const [isInputFocused, setInputFocus] = useState(false) 
 
   if (!modal.isActionAvailable) return undefined
   
@@ -24,7 +25,9 @@ export default function ListsAndTodosActionsModal() {
         ? <Input
           ref={modal.inputRef} $mode={context.mode}
           placeholder={modal.description}
-          autoFocus
+          onFocus={() => setInputFocus(true)}
+          onBlur={() => setInputFocus(false)}
+          $activeInput={isInputFocused} autoFocus
         />
         : <Text $mode={context.mode} $secondary>
           {modal.description}

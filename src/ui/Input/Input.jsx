@@ -27,7 +27,7 @@ const StyledInput = styled.input`
     background: ${props => props.$mode === "light" ? "var(--light-grey)" : "var(--dark-grey)"};
   `};
 
-  ${props => props.$activeSearch && css`
+  ${props => props.$activeInput && css`
     border-bottom-color: ${props => props.$mode === "light" ? "var(--primary-purple)" : "var(--on-dark-primary-purple)"};
   `};
 
