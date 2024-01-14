@@ -281,7 +281,7 @@ const store = createStore(
     height: 1px;
     background-color: ${t=>t.$mode==="light"?"var(--light-grey)":"var(--dark-grey)"}
   `};
-`;function Ev({$mode:e,children:t}){return p.jsx(V,{$bgColor:e==="light"?"var(--light-primary-purple)":"var(--dark-mode-background)",children:p.jsx(V,{$direction:"row",$height:"100dvh",children:t})})}const YS="/uno-to-do-app/assets/uno-logo-88d20efe.svg",QS="/uno-to-do-app/assets/uno-logo-dark-mode-415c6f53.svg",ZS="/uno-to-do-app/assets/welcome-884edc48.svg";function be(e){const t=e.$mode==="light"?"black":"white";return p.jsx(KS,{$defaultColor:t,...e})}const KS=K.p`
+`;function Ev({$mode:e,children:t}){return p.jsx(V,{$bgColor:e==="light"?"var(--light-primary-purple)":"var(--dark-mode-background)",children:p.jsx(V,{$direction:"row",$height:"100dvh",children:t})})}const YS=""+new URL("uno-logo-88d20efe.svg",import.meta.url).href,QS=""+new URL("uno-logo-dark-mode-415c6f53.svg",import.meta.url).href,ZS=""+new URL("welcome-884edc48.svg",import.meta.url).href;function be(e){const t=e.$mode==="light"?"black":"white";return p.jsx(KS,{$defaultColor:t,...e})}const KS=K.p`
   ${Ea};
   font-size: ${e=>e.$size||"16px"};
   line-height: ${e=>e.$height||"150%"};
