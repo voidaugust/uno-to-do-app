@@ -1,4 +1,5 @@
 const todoPanelUIInitialState = {
+  activeTaskId: null,
   isTodoTitleChanging: false,
   isDueDateChanging: false,
   isNoteChanging: false,

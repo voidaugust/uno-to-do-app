@@ -12,8 +12,7 @@ import Icon from '../../../ui/Icons/Icon'
 import { defaultAnimation } from '../../../ui/defaultAnimation'
 
 export default function CalendarModule({
-  customDueDate,
-  changeCustomDueDate
+  customDueDate,changeCustomDueDate
 }) {
   const context = useContext(AppContext)
 
@@ -70,15 +69,6 @@ const CustomCalendarStyles = createGlobalStyle`
     border: 0;
     font-family: Roboto, sans-serif !important;
     font-size: var(--default-font-size);
-  }
-
-  .react-calendar,
-  .react-calendar *,
-  .react-calendar *:before,
-  .react-calendar *:after {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
   }
 
   abbr {

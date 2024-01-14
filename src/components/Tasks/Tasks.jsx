@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux"
 import Container from "../../ui/Containers/Container"
 import Task from "./Task"
 import { useMemo } from "react"
-import { setActiveTaskId } from "../../store/actionCreators/todoListUIActionsCreator/"
+import { setActiveTaskId } from "../../store/actionCreators/todoPanelUIActionsCreator/"
 
 export default function Tasks() {
   const activeListId = useSelector(store => store.todoListUI.activeListId)

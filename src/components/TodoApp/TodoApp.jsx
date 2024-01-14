@@ -13,7 +13,7 @@ import DueDateSettingModal from '../Modal/DueDateSettingModal/DueDateSettingModa
 
 export default function TodoApp() {
   const context = useContext(AppContext)
-  const activeTask = useSelector(store => store.todoListUI.activeTaskId)
+  const activeTask = useSelector(store => store.todoPanelUI.activeTaskId)
   const isActiveTaskSet = activeTask !== null
 
   return (

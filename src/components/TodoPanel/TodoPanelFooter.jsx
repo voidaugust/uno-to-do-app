@@ -5,7 +5,7 @@ import Container from "../../ui/Containers/Container"
 import Text from "../../ui/Text/Text"
 import Icon from "../../ui/Icons/Icon"
 import SquareIconButton from "../../ui/Button/SquareIconButton"
-import { setActiveTaskId } from "../../store/actionCreators/todoListUIActionsCreator"
+import { setActiveTaskId } from "../../store/actionCreators/todoPanelUIActionsCreator"
 import { 
   arrowRightOnDarkIcon, arrowRightOnLightIcon, 
   deleteOnDarkIcon, deleteOnLightIcon 

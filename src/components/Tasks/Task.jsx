@@ -2,7 +2,7 @@ import { useContext } from "react"
 import AppContext from "../../context/context"
 import { useDispatch, useSelector } from "react-redux"
 import { setCompleted, setImportant } from "../../store/actionCreators/dataActionsCreator"
-import { CheckboxWithCustomBg, TaskContainer, TaskInfoContainer } from "../../ui/TaskItem/TaskItem"
+import { Checkbox, TaskContainer, TaskInfoContainer } from "../../ui/TaskItem/TaskItem"
 import Container from "../../ui/Containers/Container"
 import SquareIconButton from "../../ui/Button/SquareIconButton"
 import Icon from "../../ui/Icons/Icon"
@@ -16,7 +16,7 @@ import taskDueDate from "./taskDueDate"
 
 export default function Task(props) {
   const context = useContext(AppContext)
-  const activeTaskId = useSelector(store => store.todoListUI.activeTaskId)
+  const activeTaskId = useSelector(store => store.todoPanelUI.activeTaskId)
   const dispatch = useDispatch()
   
   const importantIconNotFilled = 
@@ -51,7 +51,7 @@ export default function Task(props) {
           $mode={context.mode}
           onClick={(e) => onSetCompleted(e)}
         >
-          <CheckboxWithCustomBg 
+          <Checkbox
             $mode={context.mode}
             checked={props.isCompleted}
             $isCompleted={props.isCompleted}

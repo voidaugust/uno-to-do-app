@@ -2,9 +2,13 @@ import {
   deleteList, deleteTodo 
 } from "./dataActionsCreator"
 import { 
-  setActiveListId, setActiveTaskId, 
-  toggleShowingAllTasks, toggleShowingImportant 
+  setActiveListId,
+  toggleShowingAllTasks, 
+  toggleShowingImportant 
 } from "./todoListUIActionsCreator"
+import { 
+  setActiveTaskId 
+} from "./todoPanelUIActionsCreator"
 import { 
   saveSettings, toggleShowingUserPanel 
 } from "./userPanelUIActionsCreator"

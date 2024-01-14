@@ -22,12 +22,8 @@ export const TaskContainer = styled.li`
 `
 
 export const Checkbox = (props) => (
-  <StyledCheckbox readOnly={true} {...props} />
-)
-
-export const CheckboxWithCustomBg = (props) => (
   <>
-    <StyledCheckbox readOnly={true} $customBg {...props} />
+    <StyledCheckbox readOnly={true} {...props} />
     <StyledFakeCheckbox />
   </>
 )
@@ -35,14 +31,10 @@ export const CheckboxWithCustomBg = (props) => (
 const StyledCheckbox = styled.input.attrs({ type: "checkbox" })`
   position: absolute;
   transform: scale(1.5);
-  opacity: 1;
+  opacity: ${props => props.$isCompleted ? "1" : "0"};
   cursor: pointer;
   accent-color: ${props => props.$mode === "light" ? "var(--primary-purple)" : "var(--on-dark-primary-purple)"};
   ${defaultAnimation}
-
-  ${props => props.$customBg && css`
-    opacity: ${props => props.$isCompleted ? "1" : "0"};
-  `};
 `
 
 const StyledFakeCheckbox = styled.label`

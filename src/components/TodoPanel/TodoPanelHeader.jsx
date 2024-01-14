@@ -47,6 +47,7 @@ export default function TodoPanelHeader({ activeTask }) {
         <Checkbox 
           $mode={context.mode}
           checked={activeTask.isCompleted}
+          $isCompleted={activeTask.isCompleted}
         />
       </SquareIconButton>
 

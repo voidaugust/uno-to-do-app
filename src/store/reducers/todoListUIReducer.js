@@ -7,7 +7,6 @@ import {
   TOGGLE_SHOWING_ALL_TASKS,
   TOGGLE_SHOWING_IMPORTANT,
   SET_ACTIVE_LIST_ID,
-  SET_ACTIVE_TASK_ID,
   SET_SEARCH_QUERY
 } from "../actions/todoListUIActions"
 import todoListUIInitialState from "../initialStates/todoListUIInitialState"
@@ -54,11 +53,6 @@ export default function todoListUIReducer(
     case SET_ACTIVE_LIST_ID: return { 
       ...state, 
       activeListId: payload.listId 
-    }
-
-    case SET_ACTIVE_TASK_ID: return { 
-      ...state, 
-      activeTaskId: payload.id 
     }
     
     case SET_SEARCH_QUERY: return { 

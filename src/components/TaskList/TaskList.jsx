@@ -6,7 +6,8 @@ import TaskListHeader from "./TaskListHeader"
 import TaskListTabs from "./TaskListTabs"
 import Tasks from "../Tasks/Tasks"
 import Button from "../../ui/Button/Button"
-import { setActiveTaskId, toggleCreatingTodo } from "../../store/actionCreators/todoListUIActionsCreator"
+import { toggleCreatingTodo } from "../../store/actionCreators/todoListUIActionsCreator"
+import { setActiveTaskId } from "../../store/actionCreators/todoPanelUIActionsCreator"
 import TasksNotFound from "../Tasks/TasksNotFound"
 
 export default function TaskList() {

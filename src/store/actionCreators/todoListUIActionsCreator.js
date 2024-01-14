@@ -7,7 +7,6 @@ import {
   TOGGLE_SHOWING_ALL_TASKS,
   TOGGLE_SHOWING_IMPORTANT,
   SET_ACTIVE_LIST_ID,
-  SET_ACTIVE_TASK_ID,
   SET_SEARCH_QUERY
 } from "../actions/todoListUIActions"
 
@@ -19,7 +18,6 @@ const toggleShowingCompleted = (payload) => ({type: TOGGLE_SHOWING_COMPLETED, pa
 const toggleShowingAllTasks = (payload) => ({type: TOGGLE_SHOWING_ALL_TASKS, payload})
 const toggleShowingImportant = (payload) => ({type: TOGGLE_SHOWING_IMPORTANT, payload})
 const setActiveListId = (payload) => ({type: SET_ACTIVE_LIST_ID, payload})
-const setActiveTaskId = (payload) => ({type: SET_ACTIVE_TASK_ID, payload})
 const setSearchQuery = (payload) => ({type: SET_SEARCH_QUERY, payload})
 
 export {
@@ -31,6 +29,5 @@ export {
   toggleShowingAllTasks,
   toggleShowingImportant,
   setActiveListId,
-  setActiveTaskId,
   setSearchQuery
 }

@@ -13,7 +13,7 @@ export default function TodoPanel() {
   
   const taskLists = useSelector(store => store.data)
   const tasks = useMemo(() => taskLists.map(list => list.todos).flat(Infinity), [taskLists])
-  const activeTaskId = useSelector(store => store.todoListUI.activeTaskId)
+  const activeTaskId = useSelector(store => store.todoPanelUI.activeTaskId)
   const activeTask = useMemo(() => tasks.find(task => task.id === activeTaskId), [tasks, activeTaskId])
 
   return (

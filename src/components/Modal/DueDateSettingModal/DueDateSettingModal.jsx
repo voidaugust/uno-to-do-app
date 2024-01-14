@@ -12,7 +12,7 @@ export default function DueDateSettingModal() {
   const isDueDateChanging = useSelector(store => store.todoPanelUI.isDueDateChanging)
   const taskLists = useSelector(store => store.data)
   const tasks = useMemo(() => taskLists.map(list => list.todos).flat(Infinity), [taskLists])
-  const activeTaskId = useSelector(store => store.todoListUI.activeTaskId)
+  const activeTaskId = useSelector(store => store.todoPanelUI.activeTaskId)
   const activeTask = tasks.find(task => task.id === activeTaskId)
 
   const dispatch = useDispatch()
