@@ -1,13 +1,13 @@
 import { useContext, useState } from "react"
-import Container from "../../ui/Containers/Container"
-import Input from "../../ui/Input/Input"
-import Icon from "../../ui/Icons/Icon"
-import { searchIcon } from "../../ui/Icons/iconTypes"
+import Container from "../ui/Container"
+import Input from "../ui/Input"
+import Icon from "../ui/Icons/Icon"
+import { searchIcon } from "../ui/Icons/iconTypes"
 import { useDispatch, useSelector } from "react-redux"
-import AppContext from "../../context/context"
-import { setSearchQuery } from "../../store/actionCreators/todoListUIActionsCreator"
-import { cancelIconOnLight, cancelIconOnDark } from "../../ui/Icons/iconTypes"
-import SquareIconButton from "../../ui/Button/SquareIconButton"
+import AppContext from "../context/context"
+import { setSearchQuery } from "../store/actionCreators/todoListUIActionsCreator"
+import { cancelIconOnLight, cancelIconOnDark } from "../ui/Icons/iconTypes"
+import SquareIconButton from "../ui/Buttons/SquareIconButton"
 
 export default function SearchInput() {
   const context = useContext(AppContext)

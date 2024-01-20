@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import Container from "../../ui/Containers/Container"
+import Container from "../../ui/Container"
 import Task from "./Task"
 import { useMemo } from "react"
 import { setActiveTaskId } from "../../store/actionCreators/todoPanelUIActionsCreator/"
@@ -40,7 +40,9 @@ export default function Tasks() {
   return (
     tasks.length > 0 
       ? <Container 
-        as="ul" $marginBlock="10px 0" $gap="5px" $height="100%"
+        as="ul" $marginBlock="10px 0" $gap="5px"
+        $justifyContent="flex-start"
+        $maxHeight="65vh" $scrolling
       >
         {
           tasks.map(task => (

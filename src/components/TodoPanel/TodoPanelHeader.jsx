@@ -1,10 +1,10 @@
 import { useContext } from "react"
 import { useDispatch } from "react-redux"
 import AppContext from "../../context/context"
-import Container from "../../ui/Containers/Container"
+import Container from "../../ui/Container"
 import Icon from "../../ui/Icons/Icon"
-import { Checkbox } from "../../ui/TaskItem/TaskItem"
-import SquareIconButton from "../../ui/Button/SquareIconButton"
+import { Checkbox } from "../../ui/TaskItem"
+import SquareIconButton from "../../ui/Buttons/SquareIconButton"
 import { 
   importantIconFilled, 
   importantIconNotFilledOnLight,
@@ -12,7 +12,7 @@ import {
 } from "../../ui/Icons/iconTypes"
 import { changeTodoTitle, setCompleted, setImportant } from "../../store/actionCreators/dataActionsCreator"
 import { toggleTodoTitleChanging } from "../../store/actionCreators/todoPanelUIActionsCreator"
-import Input from "../../ui/Input/Input"
+import Input from "../../ui/Input"
 
 export default function TodoPanelHeader({ activeTask }) {
   const context = useContext(AppContext)

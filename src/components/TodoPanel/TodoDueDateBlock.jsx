@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import AppContext from '../../context/context'
 import { toggleDueDateChanging } from '../../store/actionCreators/todoPanelUIActionsCreator'
-import SquareIconButton from '../../ui/Button/SquareIconButton'
+import SquareIconButton from '../../ui/Buttons/SquareIconButton'
 import { 
   taskEmptyDueDateOnLightIcon,
   taskEmptyDueDateOnDarkIcon,
@@ -12,7 +12,7 @@ import {  } from '../../ui/Icons/iconTypes'
 import Icon from '../../ui/Icons/Icon'
 import { useDispatch } from 'react-redux'
 import Text from '../../ui/Text/Text'
-import Container from '../../ui/Containers/Container'
+import Container from '../../ui/Container'
 
 export default function TodoDueDateBlock({ activeTask }) {
   const context = useContext(AppContext)

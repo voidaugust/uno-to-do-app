@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import AppContext from '../../context/context'
-import Container from '../../ui/Containers/Container'
+import Container from '../../ui/Container'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleShowingCompleted } from '../../store/actionCreators/todoListUIActionsCreator'

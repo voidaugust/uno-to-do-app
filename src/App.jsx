@@ -1,8 +1,8 @@
 import { useState } from "react"
 import { useSelector } from "react-redux"
 import AppContext from "./context/context"
-import StartPage from "./components/StartPage/StartPage"
-import TodoApp from "./components/TodoApp/TodoApp"
+import StartPage from "./components/StartPage"
+import TodoApp from "./components/TodoApp"
 
 export default function App() {
   const [isAppLaunched, setIsAppLaunched] = useState(false)

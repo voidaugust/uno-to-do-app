@@ -1,10 +1,10 @@
 import { useContext } from 'react'
-import AppContext from '../../context/context'
-import Container from '../../ui/Containers/Container'
-import UserPic from '../../ui/UserPic/UserPic'
-import Text from '../../ui/Text/Text'
+import AppContext from '../context/context'
+import Container from '../ui/Container'
+import UserPic from '../ui/UserPic'
+import Text from '../ui/Text/Text'
 import { useDispatch } from 'react-redux'
-import { toggleShowingUserPanel } from '../../store/actionCreators/userPanelUIActionsCreator'
+import { toggleShowingUserPanel } from '../store/actionCreators/userPanelUIActionsCreator'
 
 export default function UserName() {
   const context = useContext(AppContext)

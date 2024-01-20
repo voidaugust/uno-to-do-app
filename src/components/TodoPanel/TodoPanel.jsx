@@ -1,7 +1,7 @@
 import { useContext, useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import AppContext from '../../context/context'
-import Container from '../../ui/Containers/Container'
+import Container from '../../ui/Container'
 import styled from 'styled-components'
 import TodoPanelFooter from './TodoPanelFooter'
 import TodoPanelHeader from './TodoPanelHeader'

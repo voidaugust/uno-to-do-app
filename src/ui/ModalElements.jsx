@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { marginsAndPaddings } from "../marginsAndPaddings"
+import { marginsAndPaddings } from "./marginsAndPaddings"
 
 const ModalBackground = (props) => {
   return <StyledModalBackground {...props} />

@@ -1,10 +1,10 @@
 import { useContext } from "react"
 import { useDispatch } from "react-redux"
 import AppContext from "../../context/context"
-import Container from "../../ui/Containers/Container"
+import Container from "../../ui/Container"
 import Text from "../../ui/Text/Text"
 import Icon from "../../ui/Icons/Icon"
-import SquareIconButton from "../../ui/Button/SquareIconButton"
+import SquareIconButton from "../../ui/Buttons/SquareIconButton"
 import { setActiveTaskId } from "../../store/actionCreators/todoPanelUIActionsCreator"
 import { 
   arrowRightOnDarkIcon, arrowRightOnLightIcon, 

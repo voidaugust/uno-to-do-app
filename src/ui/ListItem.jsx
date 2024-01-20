@@ -1,10 +1,10 @@
 import styled, { css } from "styled-components"
-import Icon from "../Icons/Icon"
-import Text from "../Text/Text"
+import Icon from "./Icons/Icon"
+import Text from "./Text/Text"
 import { 
   importantIconFilled, allTasksIcon, listIcon, 
   arrowRightOnLightIcon, arrowRightOnDarkIcon 
-} from "../Icons/iconTypes"
+} from "./Icons/iconTypes"
 
 export default function ListItem(props) {
   let listType

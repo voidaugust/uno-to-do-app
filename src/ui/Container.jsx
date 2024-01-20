@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components"
-import { marginsAndPaddings } from "../marginsAndPaddings"
-import { modeBackground } from "../modeBackground"
+import { marginsAndPaddings } from "./marginsAndPaddings"
+import { modeBackground } from "./modeBackground"
 // import { defaultAnimation } from "../defaultAnimation"
 
 export default function Container(props) {
@@ -19,6 +19,7 @@ const StyledContainer = styled.div`
   min-width: ${props => props.$minWidth};
   max-width: ${props => props.$maxWidth};
   height: ${props => props.$height || "auto"};
+  max-height: ${props => props.$maxHeight};
   background-color: ${props => props.$bgColor || "transparent"};
   border-radius: ${props => props.$radius || 0};
   cursor: ${props => props.$cursor || "inherit"};

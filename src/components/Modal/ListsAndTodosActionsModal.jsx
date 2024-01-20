@@ -2,7 +2,7 @@ import { useContext, useState } from 'react'
 import { createPortal } from 'react-dom'
 import AppContext from '../../context/context'
 import Text from '../../ui/Text/Text'
-import Input from '../../ui/Input/Input'
+import Input from '../../ui/Input'
 import useModalData from './useModalData'
 import Modal from './Modal'
 

@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components"
-import Container from "../Containers/Container"
-import { modeBackground } from "../modeBackground"
-import { defaultAnimation } from "../defaultAnimation"
+import Container from "./Container"
+import { modeBackground } from "./modeBackground"
+import { defaultAnimation } from "./defaultAnimation"
 
 export const TaskContainer = styled.li`
   display: flex;
@@ -10,7 +10,7 @@ export const TaskContainer = styled.li`
   align-items: center;
   padding-inline: 10px;
   width: 100%;
-  height: 60px;
+  min-height: 60px;
   gap: 16px;
   list-style-type: none;
   border-radius: 10px;

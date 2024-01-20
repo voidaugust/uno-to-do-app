@@ -4,8 +4,8 @@ import {
   calendarIconOnDark, calendarIconOnLight, 
   dateArrowRightIconOnDark, dateArrowRightIconOnLight 
 } from "../../../ui/Icons/iconTypes"
-import Container from "../../../ui/Containers/Container"
-import SquareIconButton from "../../../ui/Button/SquareIconButton"
+import Container from "../../../ui/Container"
+import SquareIconButton from "../../../ui/Buttons/SquareIconButton"
 import Icon from "../../../ui/Icons/Icon"
 import Text from "../../../ui/Text/Text"
 

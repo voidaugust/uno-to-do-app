@@ -1,14 +1,13 @@
 import { useContext, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import AppContext from "../../context/context"
-import Container from "../../ui/Containers/Container"
+import Container from "../../ui/Container"
 import TaskListHeader from "./TaskListHeader"
 import TaskListTabs from "./TaskListTabs"
-import Tasks from "../Tasks/Tasks"
-import Button from "../../ui/Button/Button"
+import Button from "../../ui/Buttons/Button"
 import { toggleCreatingTodo } from "../../store/actionCreators/todoListUIActionsCreator"
 import { setActiveTaskId } from "../../store/actionCreators/todoPanelUIActionsCreator"
-import TasksNotFound from "../Tasks/TasksNotFound"
+import SelectedTasks from "./SelectedTasks"
 
 export default function TaskList() {
   const context = useContext(AppContext)
@@ -22,6 +21,10 @@ export default function TaskList() {
   
   const taskLists = useSelector(store => store.data)
   const allTasks = useMemo(() => taskLists.map(list => list.todos).flat(Infinity), [taskLists])
+  
+  const importantTasks = useMemo(() => allTasks.filter(task => task.isImportant), [allTasks])
+  const noImportantTasks = isShowingImportant && importantTasks.length < 1
+
   const searchedTasks = useMemo(() => allTasks.filter(
     task => task.title.toLowerCase().includes(searchQuery.toLowerCase())
   ), [allTasks, searchQuery])
@@ -40,21 +43,27 @@ export default function TaskList() {
         $alignItems="flex-start" $justifyContent="space-between"
         onClick={(e) => unsetActiveTask(e)}
       >
+      
         <Container>
           <TaskListHeader />
           {isUserListSelected ? <TaskListTabs /> : undefined}
-          {noTasksFound ? <TasksNotFound /> : <Tasks />}
+          <SelectedTasks
+            noTasksFound={noTasksFound}
+            noImportantTasks={noImportantTasks}
+          />
         </Container>
 
-        {isUserListSelected 
-          ? <Button 
-            $add $alignLeft $opaque
-            $width="100%" $mode={context.mode}
-            onClick={() => dispatch(toggleCreatingTodo())}
-          >
-            Add a task
-          </Button>
-          : undefined
+        {
+          isUserListSelected 
+            ? <Button 
+              $add $alignLeft $opaque
+              $width="100%" $mode={context.mode}
+              onClick={() => dispatch(toggleCreatingTodo())}
+            >
+              Add a task
+            </Button>
+            
+            : undefined
         }
       </Container>
     </>

@@ -1,4 +1,4 @@
-import Container from '../Containers/Container'
+import Container from './Container'
 
 export default function MainWrapper({ $mode, children }) {
   return (

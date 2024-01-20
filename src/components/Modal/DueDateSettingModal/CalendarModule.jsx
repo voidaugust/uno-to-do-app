@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import AppContext from '../../../context/context'
 import Calendar from 'react-calendar'
-import Container from '../../../ui/Containers/Container'
+import Container from '../../../ui/Container'
 import Text from '../../../ui/Text/Text'
 import 'react-calendar/dist/Calendar.css'
 import { createGlobalStyle } from 'styled-components'

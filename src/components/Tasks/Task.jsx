@@ -2,9 +2,9 @@ import { useContext } from "react"
 import AppContext from "../../context/context"
 import { useDispatch, useSelector } from "react-redux"
 import { setCompleted, setImportant } from "../../store/actionCreators/dataActionsCreator"
-import { Checkbox, TaskContainer, TaskInfoContainer } from "../../ui/TaskItem/TaskItem"
-import Container from "../../ui/Containers/Container"
-import SquareIconButton from "../../ui/Button/SquareIconButton"
+import { Checkbox, TaskContainer, TaskInfoContainer } from "../../ui/TaskItem"
+import Container from "../../ui/Container"
+import SquareIconButton from "../../ui/Buttons/SquareIconButton"
 import Icon from "../../ui/Icons/Icon"
 import { 
   importantIconFilled, 

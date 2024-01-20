@@ -23,6 +23,9 @@ const GlobalStyle = createGlobalStyle`
     
     --primary-purple: #5946D2;
     --on-dark-primary-purple: #9373FF;
+
+    --light-background-variant: #F4F4F4;
+    --dark-background-variant: #252429;
     
     --light-primary-purple: #F2EFFB;
     --light-primary-purple-variant: #B0A2F2;

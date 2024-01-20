@@ -1,4 +1,4 @@
-import Button from "../../ui/Button/Button"
+import Button from "../../ui/Buttons/Button"
 import { 
   CREATE, RENAME, DELETE_LIST, 
   ADD, DELETE_TASK, SAVE_SETTINGS,

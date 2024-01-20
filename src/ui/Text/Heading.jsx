@@ -16,7 +16,6 @@ export default function Heading(props) {
 
   const preparedProps = {
     ...props, 
-    $defaultColor: `${props.$mode === "light" ? "black" : "white"}`,
     $defaultSize: defaultSize()
   }
 
@@ -37,8 +36,16 @@ const StylesForHeading = css`
   line-height: ${props => props.$height};
   font-weight: ${props => props.$fontWeight || "400"};
   text-align: ${props => props.$align || "left"};
-  color: ${props => props.$color || props.$defaultColor};
+  color: ${props => props.$color || props.$mode === "light" ? "black" : "white"};
   text-wrap: balance;
+
+  ${props => props.$listHeading && css`
+    color: ${
+      props => props.$isSearchNotActive 
+        ? "white" 
+        : props.$mode === "light" ? "black" : "white"
+    }`
+  }
 
   ${props => props.$purple && css`
     color: ${

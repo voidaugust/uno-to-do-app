@@ -1,11 +1,14 @@
 import { useContext } from "react"
-import Container from "../../ui/Containers/Container"
+// import { useSelector } from "react-redux"
+import Container from "../../ui/Container"
 import Heading from "../../ui/Text/Heading"
 import Text from "../../ui/Text/Text"
 import AppContext from "../../context/context"
 
-export default function TasksNotFound() {
+export default function NoTasks({ heading, text }) {
   const context = useContext(AppContext)
+  // const isShowingImportant = useSelector(store => store.todoListUI.showingImportant)
+
   return (
     <Container 
       $marginBlock="20vh 0" $height="30vh" $gap="10px"
@@ -13,11 +16,11 @@ export default function TasksNotFound() {
       $bgColor={context.mode === "light" ? "var(--over-dark-surface-grey)" : "var(--over-light-surface-grey)"}
     >
       <Heading $h2 $mode={context.mode}>
-        Task not found
+        {heading}
       </Heading>
 
-      <Text $secondary $mode={context.mode}>
-        {`We searched high and low but couldn't find what you're looking for`}
+      <Text $mode={context.mode} $secondary>
+        {text}
       </Text>
     </Container>
   )

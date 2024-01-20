@@ -5,9 +5,9 @@ import {
   ModalContainer, 
   ModalContent, 
   ModalButtons 
-} from '../../ui/ModalElements/ModalElements'
+} from '../../ui/ModalElements'
 import Heading from '../../ui/Text/Heading'
-import Button from '../../ui/Button/Button'
+import Button from '../../ui/Buttons/Button'
 import ModalActionButton from './ModalActionButton'
 
 export default function Modal({ 

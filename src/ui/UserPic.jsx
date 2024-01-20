@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components"
-import Text from "../Text/Text"
+import Text from "./Text/Text"
 
 export default function UserPic(props) {
   return (

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useContext } from 'react'
-import ListItem from '../../ui/ListItem/ListItem'
+import ListItem from '../../ui/ListItem'
 import AppContext from '../../context/context'
 import { setAndShowActiveList } from '../../store/actionCreators/thunks'
 

@@ -1,13 +1,17 @@
-import Container from "../../ui/Containers/Container"
+import { useContext } from "react"
+import AppContext from "../../context/context"
+import Container from "../../ui/Container"
 import Heading from "../../ui/Text/Heading"
 import Icon from "../../ui/Icons/Icon"
 import { deleteListIcon, editListIcon } from "../../ui/Icons/iconTypes"
 import { useDispatch, useSelector } from "react-redux"
 import { toggleDeletingList, toggleRenamingList } from "../../store/actionCreators/todoListUIActionsCreator"
 import styled from "styled-components"
-import SquareIconButton from "../../ui/Button/SquareIconButton"
+import SquareIconButton from "../../ui/Buttons/SquareIconButton"
 
 export default function TaskListHeader() {
+  const context = useContext(AppContext)
+
   const activeListId = useSelector(store => store.todoListUI.activeListId)
   const taskLists = useSelector(store => store.data)
   const isShowingAllTasks = useSelector(store => store.todoListUI.showingAllTasks)
@@ -26,7 +30,10 @@ export default function TaskListHeader() {
 
   return (
     <HeaderContainer>
-      <Heading $type="h4" $color="white">
+      <Heading 
+        $type="h4" $mode={context.mode}
+        $listHeading $isSearchNotActive={isSearchNotActive}
+      >
         {isSearchNotActive ? activeListTitle : "Search"}
       </Heading>
 
