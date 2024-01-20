@@ -1,8 +1,8 @@
 # Uno To Do App
 
-This is a training application built using React, Redux, Hooks, an external library (react-calendar), styled with styled-components and powered by Vite, local development and building tool.
+This is a training application built using React, Redux, Hooks, an external library (react-calendar), styled with styled-components, powered by Vite and deployed to GitHub Pages.
 The app allows users to add, edit, and delete tasks, as well as mark them as completed or important.
-Live demo of the project is available here: [https://voidaugust.github.io/uno-to-do-app/].
+Live demo of the project is available on my [GitHub Pages](https://voidaugust.github.io/uno-to-do-app/).
 
 ## Learning objectives
 
@@ -15,6 +15,7 @@ Live demo of the project is available here: [https://voidaugust.github.io/uno-to
 - Using Vite.
 - Connecting external libraries to the project.
 - Applying React best practices and language style guides in code.
+- Deploying via GitHub Pages.
 
 ## Technologies Used
 
@@ -24,6 +25,8 @@ Live demo of the project is available here: [https://voidaugust.github.io/uno-to
 - **react-calendar**: A simple calendar library that provides the ability to pick days, months, etc.
 - **styled-components**: A popular CSS-in-JS library for styling React components.
 - **Vite**: A local development server and app buidling tool.
+- **GitHub**: A version control system.
+- **GitHub Pages**: A GitHub hosting and publishing service.
 
 ## Features
 
