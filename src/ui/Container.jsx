@@ -23,7 +23,6 @@ const StyledContainer = styled.div`
   background-color: ${props => props.$bgColor || "transparent"};
   border-radius: ${props => props.$radius || 0};
   cursor: ${props => props.$cursor || "inherit"};
-  
   ${'' /* ${defaultAnimation} */}
   ${modeBackground}
 
@@ -41,7 +40,8 @@ const StyledContainer = styled.div`
   `};
 
   ${props => props.$scrolling && css`
-    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: auto;
   `};
 
   ${props => props.$divider && css`
