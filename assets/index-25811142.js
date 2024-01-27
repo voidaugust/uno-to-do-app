@@ -256,7 +256,6 @@ const store = createStore(
   background-color: ${e=>e.$bgColor||"transparent"};
   border-radius: ${e=>e.$radius||0};
   cursor: ${e=>e.$cursor||"inherit"};
-  
   ${""}
   ${$v}
 
@@ -274,7 +273,8 @@ const store = createStore(
   `};
 
   ${e=>e.$scrolling&&K`
-    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: auto;
   `};
 
   ${e=>e.$divider&&K`
